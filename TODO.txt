@@ -6,10 +6,6 @@ A set of four (4) metrics with which your team will grade each other at the end 
 - You can pull from Core Protocols as well as this document -> https://docs.google.com/document/d/1_b03ooQIRPFL9gmfAkezlD84wi0NfhaUbBuljTqW6sg/edit?usp=sharing
 - We need to work on this together
 
-Create a status report in Google Docs shared with sddteaminstructor@gmail.com.
-- We need to work on this together
-- Duy made one for 6/6. We are working on only one for the semester and update it.
-
 Shared online repo (COMPLETE)
 - Check out the git repo
 
@@ -17,6 +13,10 @@ Team Roster (see https://sddsummer2022.slack.com/archives/C03GH6J4ZNC/p165419498
 (COMPLETE)
 
 Each team needs to sign up for a slot in the Small Meeting schedule here -> https://docs.google.com/spreadsheets/d/1lAJLjp-ycJfojx5cAKNII-n_lMjROtxQLQPzqynMBq4/edit?usp=sharing (COMPLETE)
+
+Create a status report in Google Docs shared with sddteaminstructor@gmail.com. 
+- We need to work on this together
+- Duy made one for 6/6. We are working on only one for the semester and update it. (COMPLETE)
 
 TO DO LIST: we'll do this on 6/8 meeting. 
 Pick a project task manager website
