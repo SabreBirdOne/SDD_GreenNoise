@@ -18,3 +18,7 @@ Each team needs to sign up for a slot in the Small Meeting schedule here -> http
 
 Shared online repo (COMPLETE)
 - Check out the git repo
+
+TO DO LIST: we'll do this on 6/8 meeting. 
+Pick a project task manager website
+- Ongoing
