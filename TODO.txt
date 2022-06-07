@@ -26,5 +26,15 @@ TO DO LIST: due 6/8/2022
 "For your Small Meeting, please bring at least one persona and one user scenario."
 - Duy will handle this
 
+SPRINT 1
 
+Duy: "Dude I have no idea what's going on"
+
+Vision document
+
+2 user personas and 2 user scenarios for the personas
+
+Initial project plan
+
+Prototype (Optional)
 
