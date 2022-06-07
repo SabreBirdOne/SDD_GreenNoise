@@ -26,7 +26,7 @@ TO DO LIST: due 6/8/2022
 "For your Small Meeting, please bring at least one persona and one user scenario."
 - Duy finished a draft for user persona and scenario 1
 
-SPRINT 1 DELIVERABLES
+TO DO LIST: SPRINT 1 DELIVERABLES
 Schedule says "Sprint 1 Deliverables due Friday June 17th in LMS"
 The syllabus provides details on the deliverables
 Duy: put all the artefacts into a SPRINT 1 folder on google docs
@@ -34,6 +34,7 @@ Duy: put all the artefacts into a SPRINT 1 folder on google docs
 Vision document
 
 2 user personas and 2 user scenarios for the personas
+- user persona and scenario 1 draft COMPLETE, ready for review on 6/8
 
 Initial project plan
 
