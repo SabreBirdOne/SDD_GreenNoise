@@ -1,0 +1,5 @@
+*NAMING CONVENTIONS*
+  - variables & data attributes: all lowercase with '_' marking spaces (Ex. 'my_var')
+  - classes: all words marked by uppercase first letter (Ex. 'MyClass')
+  - functions: first word lowercase, subsequent words capitalized (Ex. 'myFunc()')
+  - code & header files: all lowercase with '_' marking spaces (Ex. 'my_file')
