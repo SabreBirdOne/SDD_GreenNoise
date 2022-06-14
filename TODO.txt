@@ -40,5 +40,5 @@ Initial project plan
 
 Prototype (Optional)
 
-TO DO ITEM: status report for 6/13. Just jot down anything we did this week
+TO DO ITEM: Sprint 1 due 6/17, Make the schedule.
 
