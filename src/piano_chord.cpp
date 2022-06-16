@@ -30,14 +30,16 @@ void PianoChord::parseChord(std::string name_)
    */
   std::string root_note; // root_note is the 1st interval of the chord
   std::string bass_note = ""; // bass_note stores the bass note for inversions, otherwise is ""
-  int first_space_index = name_.find(" ");
-  root_note = name_.substr(0, first_space_index);
-  name_ = name_.substr(first_space_index + 1, name_.size() - first_space_index - 1);
+  int space_index = name_.find(" ");
+  root_note = name_.substr(0, space_index);
+  name_ = name_.substr(space_index + 1, name_.size() - space_index - 1);
   if (name_.find("/"))
   {
+    /* This section executes when the chord is in slash-inversion notation
+     */
+    space_index = name_.find("/");
+    bass_note = name_.substr(space_index + 1, name_.size() - space_index - 1);
+    name_ = name_.substr(0, space_index);
   }
-  else
-  {
-    std::cout << "|" << name_ << "|" << std::endl;
-  }
+  std::cout << "|" << name_ << "|" << std::endl;
 }
