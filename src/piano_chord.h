@@ -77,6 +77,7 @@ private:
   std::string name;
   std::vector<int> base_chord;
   std::vector<int> specific_chord;
+  bool static_bass_note;
   void parseChord(std::string name_);
 };
 

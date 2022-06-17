@@ -24,9 +24,19 @@ int noteToInt(std::string note)
 void PianoChord::parseChord(std::string name_)
 {
   /* This function expects a string in the format:
+   *
    *    "<root_note> <chord_type>/<bass note for inversions(OPTIONAL)>"
+   *
    * and sets the base_chord values to the corresponding integer-note values
    * for the input chord.
+   *
+   * If the chord is given with a slash-inversion, the base note cannot be changed.
+   * In this case, PianoChord::static_bass_note (bool) is set to true, and the
+   * bass note is the first note in the vector. For all other notes, order does
+   * not matter.
+   * However, if no slash-inversion is notated, the base note can be changed.
+   * In this casem PianoChord::static_bass_note (bool) is set to false, and the
+   * order of all notes in the PianoChord::base_chord (vector) does not matter.
    */
   std::string root_note; // root_note is the 1st interval of the chord
   std::string bass_note = ""; // bass_note stores the bass note for inversions, otherwise is ""
@@ -41,5 +51,14 @@ void PianoChord::parseChord(std::string name_)
     bass_note = name_.substr(space_index + 1, name_.size() - space_index - 1);
     name_ = name_.substr(0, space_index);
   }
-  std::cout << "|" << name_ << "|" << std::endl;
+  std::cout << "|" << bass_note << "|" << std::endl;
+  
+  if (bass_note == "")
+  {
+    /* This section executes if there is no inversion
+     */
+    static_bass_note = false;
+    base_chord.push_back(noteToInt(bass_note));
+  }
+  base_chord.push_back(noteToInt(root_note));
 }
