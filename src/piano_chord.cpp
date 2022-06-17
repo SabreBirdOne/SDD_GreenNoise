@@ -235,7 +235,11 @@ void PianoChord::parseChord(std::string name_)
   else
   {
   }
+}
 
+
+void PianoChord::print_base_chord()
+{
   for (int i = 0; i < base_chord.size(); i++)
   {
     std::cout << "|" << intToNote(base_chord[i]);

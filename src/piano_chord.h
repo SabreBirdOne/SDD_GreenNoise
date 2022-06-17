@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 /*----------------------------------------------------------------------------------------*\
  * In each octave, there are 12 notes:
@@ -73,6 +74,7 @@
 class PianoChord {
 public:
   PianoChord(std::string name_) { parseChord(name_); }
+  void print_base_chord();
 private:
   std::string name;
   std::vector<int> base_chord;
