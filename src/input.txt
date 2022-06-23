@@ -1,0 +1,5 @@
+C major
+E minor
+F# augmented
+C major/E
+end
