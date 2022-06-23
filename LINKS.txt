@@ -8,8 +8,8 @@ Small meeting sign up sheet:
 https://docs.google.com/spreadsheets/d/1lAJLjp-ycJfojx5cAKNII-n_lMjROtxQLQPzqynMBq4/edit#gid=0
 
 <<<<<<< HEAD
-opensheetmusicdisplay (musicxml file renderer)"
-https://github.com/opensheetmusicdisplay/opensheetmusicdisplay
+music sheet renderer:
+https://github.com/lenmus/lomse
 =======
 Small meeting link (TA's webex link):  
 https://rensselaer.webex.com/meet/modim2  
