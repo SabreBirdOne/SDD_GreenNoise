@@ -7,5 +7,11 @@ https://docs.google.com/document/d/1qFaL5BR2HBg6vht0XroC8Xv4WUlJbmD7UCAuGhq3JH0/
 Small meeting sign up sheet:
 https://docs.google.com/spreadsheets/d/1lAJLjp-ycJfojx5cAKNII-n_lMjROtxQLQPzqynMBq4/edit#gid=0
 
+<<<<<<< HEAD
 opensheetmusicdisplay (musicxml file renderer)"
 https://github.com/opensheetmusicdisplay/opensheetmusicdisplay
+=======
+Small meeting link (TA's webex link):  
+https://rensselaer.webex.com/meet/modim2  
+
+>>>>>>> 80649c7a22c0a133b70ffc7938ee86027d5c47cc
