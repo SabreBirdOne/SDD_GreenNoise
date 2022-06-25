@@ -1,42 +1,47 @@
 #include "piano_chord.h"
 #include <string>
+#include <math.h>
 
 #include <iostream>
 
 int noteToInt(std::string note)
 {
-  if (note == "A") return 1;
-  if (note == "Bb" || note == "A#") return 2;
-  if (note == "B") return 3;
-  if (note == "C") return 4;
-  if (note == "C#" || note == "Db") return 5;
-  if (note == "D") return 6;
-  if (note == "Eb" || note == "D#") return 7;
-  if (note == "E") return 8;
-  if (note == "F") return 9;
-  if (note == "F#" || note == "Gb") return 10;
-  if (note == "G") return 11;
-  if (note == "Ab" || note == "G#") return 12;
+  if (note == "A") return 0;
+  if (note == "Bb" || note == "A#") return 1;
+  if (note == "B") return 2;
+  if (note == "C") return 3;
+  if (note == "C#" || note == "Db") return 4;
+  if (note == "D") return 5;
+  if (note == "Eb" || note == "D#") return 6;
+  if (note == "E") return 7;
+  if (note == "F") return 8;
+  if (note == "F#" || note == "Gb") return 9;
+  if (note == "G") return 10;
+  if (note == "Ab" || note == "G#") return 11;
   return 0;
 }
 
 
 std::string intToNote(int note)
 {
-  if (note == 1) return "A";
-  if (note == 2) return "Bb";
-  if (note == 3) return "B";
-  if (note == 4) return "C";
-  if (note == 5) return "C#";
-  if (note == 6) return "D";
-  if (note == 7) return "Eb";
-  if (note == 8) return "E";
-  if (note == 9) return "F";
-  if (note == 10) return "F#";
-  if (note == 11) return "G";
-  if (note == 12) return "Ab";
-  return "";
+  std::string return_string;
+  if (note % 12 == 0) return_string = "A";
+  if (note % 12 == 1) return_string = "Bb";
+  if (note % 12 == 2) return_string = "B";
+  if (note % 12 == 3) return_string = "C";
+  if (note % 12 == 4) return_string = "C#";
+  if (note % 12 == 5) return_string = "D";
+  if (note % 12 == 6) return_string = "Eb";
+  if (note % 12 == 7) return_string = "E";
+  if (note % 12 == 8) return_string = "F";
+  if (note % 12 == 9) return_string = "F#";
+  if (note % 12 == 10) return_string = "G";
+  if (note % 12 == 11) return_string = "Ab";
+  note -= 3;
+  return_string += std::to_string((int)(floor((float)note / 12) + 1));
+  return return_string;
 }
+
 
 void PianoChord::addNotes(std::vector<int> notes)
 {
@@ -238,11 +243,117 @@ void PianoChord::parseChord(std::string name_)
 }
 
 
-void PianoChord::print_base_chord()
+std::vector<std::vector<int>> makeChordListHelper(int next_note, int max_note, std::vector<int> notes)
+{
+  std::vector<std::vector<int>> return_vector;
+  for (; next_note <= max_note; next_note++)
+  {
+    for (int i = 0; i < notes.size(); i++)
+    {
+      if (next_note % 12 == notes[i])
+      {
+        std::vector<int> new_notes = notes;
+        new_notes.erase(new_notes.begin() + i);
+        std::vector<std::vector<int>> sub_chords = makeChordListHelper(next_note + 1, max_note, new_notes);
+        for (int j = 0; j < sub_chords.size(); j++)
+        {
+          sub_chords[j].push_back(next_note);
+          return_vector.push_back(sub_chords[j]);
+        }
+        if (new_notes.size() == 0)
+        {
+          std::vector<int> sub_chord = {next_note};
+          return_vector.push_back(sub_chord);
+        }
+      }
+    }
+  }
+  return return_vector;
+}
+
+
+void PianoChord::makeChordList(int min_note, int max_note, int max_distance)
+{
+  std::vector<std::vector<int>> chord_list_vector;
+  if (static_bass_note)
+  {
+  }
+  else
+  {
+    while (min_note + max_distance <= max_note)
+    {
+      std::vector<std::vector<int>> new_chord_list_vector = makeChordListHelper(min_note, 
+                  min_note + max_distance, base_chord);
+      for (int i = 0; i < new_chord_list_vector.size(); i++)
+      {
+        for (int j = 0; j < chord_list_vector.size(); j++)
+        {
+          if (new_chord_list_vector[i] == chord_list_vector[j])
+          {
+            new_chord_list_vector.erase(new_chord_list_vector.begin() + i);
+            i--;
+            break;
+          }
+        }
+        //chord_list_vector.push_back(new_chord_list_vector[i]);
+      }
+      chord_list_vector.insert(chord_list_vector.end(), new_chord_list_vector.begin(), new_chord_list_vector.end());
+      min_note++;
+    }
+  }
+  for (int i = 0; i < chord_list_vector.size(); i++)
+  {
+    // reverse the order of the notes in each set of notes and add to PianoChord::chord_list
+    std::vector<int> new_chord(chord_list_vector[i].size());
+    for (int j = chord_list_vector[i].size(); j > 0; j--)
+    {
+      new_chord[chord_list_vector[i].size() - j] = chord_list_vector[i][j - 1];
+    }
+    chord_list.push_back(PianoChordSpecific(new_chord));
+  }
+  return;
+}
+
+
+void PianoChord::print_base_chord(std::ostream &ostr)
 {
   for (int i = 0; i < base_chord.size(); i++)
   {
-    std::cout << "|" << intToNote(base_chord[i]);
+    ostr << "|" << intToNote(base_chord[i]);
   }
-  std::cout << "|" << std::endl;
+  ostr << "|" << std::endl;
+}
+
+
+void PianoChord::print_chord(std::ostream &ostr)
+{
+  PianoChordSpecific *chord = &chord_list[specific_chord];
+  for (int i = 0; i < chord->notes.size(); i++)
+  {
+    ostr << "|" << chord->notes[i];
+  }
+  /*
+  ostr << "| ";
+  for (int i = 0; i < chord->fingerings.size(); i++)
+  {
+    ostr << "|" << chord->fingerings[i];
+  }
+  */
+  ostr << "|" << std::endl;
+}
+
+
+void PianoChord::print_chord_list(std::ostream &ostr)
+{
+  for (int i = 0; i < chord_list.size(); i++)
+  {
+    PianoChordSpecific *chord = &chord_list[i];
+    for (int j = 0; j < chord->notes.size(); j++)
+    {
+      std::string note = intToNote(chord->notes[j]);
+      note += (note.size() == 2) ? " " : "";
+      ostr << "| " << note << " ";
+    }
+    ostr << "|" << std::endl;
+  }
 }
