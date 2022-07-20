@@ -92,4 +92,5 @@ private:
   void addNotes(std::vector<int> notes);
 };
 
+std::string intToNote(int note);
 #endif

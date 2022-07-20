@@ -3,13 +3,11 @@
 #include <vector>
 #include <stdlib.h>
 #include <unistd.h>
-#include <utility>
-#include <math.h>
 
 #define MAX_REACH 17
 
 
-std::pair<int, std::vector<PianoChord>> findEasiestPath(std::vector<PianoChord> chord_sequence, int starting_chord);
+int findEasiestPath(std::vector<PianoChord>* chord_sequence, int starting_chord);
 int difficulty(PianoChordSpecific chord1, PianoChordSpecific chord2);
 
 int main()
@@ -32,13 +30,12 @@ int main()
   for (int i = 0; i < chord_sequence.size(); i++)
   {
     std::cout << "Creating chord list for " << chord_sequence[i].name << "..." << std::endl;
-    usleep(30000);
+    usleep(50000);
     chord_sequence[i].makeChordList(10, 44, MAX_REACH);
     std::cout << chord_sequence[i].name << ": Chord list created!" << std::endl;
   }
   std::cout << "Generating specific chord path..." << std::endl;
-  std::pair<int, std::vector<PianoChord>> result = findEasiestPath(chord_sequence, 0);
-  chord_sequence = result.second;
+  findEasiestPath(&chord_sequence, 0);
   std::cout << "Done!" << std::endl;
 
 
@@ -105,41 +102,36 @@ int main()
 }
 
 
-std::pair<int, std::vector<PianoChord>> findEasiestPath(std::vector<PianoChord> chord_sequence, int starting_chord)
+int findEasiestPath(std::vector<PianoChord>* chord_sequence, int starting_chord)
 {
-  //base case
-  if (starting_chord >= (int)chord_sequence.size()-1)
+  if (starting_chord >= (int)(*chord_sequence).size()-1)
   {
-    //center the leftmost note of the last chord around C3
-    int center_note = 27;
-    int best = chord_sequence[starting_chord].chord_list[0].notes[0];
+    int closest_to_C3 = (*chord_sequence)[starting_chord].chord_list[0].notes[0];
     int best_index = 0;
-    for (int i = 1; i < chord_sequence[starting_chord].chord_list.size(); i++)
+    for (int i = 1; i < (*chord_sequence)[starting_chord].chord_list.size(); i++)
     {
-      if (abs(chord_sequence[starting_chord].chord_list[i].notes[0] - center_note) < abs(best - center_note))
+      if (abs((*chord_sequence)[starting_chord].chord_list[i].notes[0] - 27) < abs(closest_to_C3 - 27))
       {
-        best = chord_sequence[starting_chord].chord_list[i].notes[0];
+        closest_to_C3 = (*chord_sequence)[starting_chord].chord_list[i].notes[0];
         best_index = i;
       }
     }
-    chord_sequence[starting_chord].setSpecificChord(best_index);
-    return std::make_pair(0, chord_sequence);
+    (*chord_sequence)[starting_chord].setSpecificChord(best_index);
+    return 0;
   }
-  //recursion
-  std::pair<int, std::vector<PianoChord>> min_difficulty = findEasiestPath(chord_sequence, starting_chord+1);
-  min_difficulty.first += difficulty(chord_sequence[starting_chord].getSpecificChord(), min_difficulty.second[starting_chord+1].getSpecificChord());
+  int min_difficulty = findEasiestPath(chord_sequence, starting_chord+1) + difficulty((*chord_sequence)[starting_chord].getSpecificChord(), (*chord_sequence)[starting_chord+1].getSpecificChord());
   int min_difficulty_index = 0;
-  for (int i = 1; i < chord_sequence[starting_chord].chord_list.size(); i++)
+  for (int i = 1; i < (*chord_sequence)[starting_chord].chord_list.size(); i++)
   {
-    chord_sequence[starting_chord].setSpecificChord(i);
-    std::pair<int, std::vector<PianoChord>> new_difficulty = findEasiestPath(chord_sequence, starting_chord+1);
-    new_difficulty.first += difficulty(chord_sequence[starting_chord].getSpecificChord(), new_difficulty.second[starting_chord+1].getSpecificChord());
-    if (new_difficulty.first < min_difficulty.first)
+    (*chord_sequence)[starting_chord].setSpecificChord(i);
+    int new_difficulty = findEasiestPath(chord_sequence, starting_chord+1) + difficulty((*chord_sequence)[starting_chord].getSpecificChord(), (*chord_sequence)[starting_chord+1].getSpecificChord());
+    if (new_difficulty < min_difficulty)
     {
       min_difficulty = new_difficulty;
       min_difficulty_index = i;
     }
   }
+  (*chord_sequence)[starting_chord].setSpecificChord(min_difficulty_index);
   return min_difficulty;
 }
 
@@ -150,7 +142,7 @@ int difficulty(PianoChordSpecific chord1, PianoChordSpecific chord2)
   int num_iterations = (chord1.notes.size() < chord2.notes.size()) ? chord1.notes.size() : chord2.notes.size();
   for (int i = 0; i < num_iterations; i++)
   {
-    difficulty += pow(2, abs(chord1.notes[i] - chord2.notes[i]));
+    difficulty += abs(chord1.notes[i] - chord2.notes[i]);
   }
   difficulty += abs((int)chord1.notes.size() - (int)chord2.notes.size());
   return difficulty;

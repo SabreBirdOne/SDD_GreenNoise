@@ -1,6 +1,9 @@
+A major
+Eb augmented
+Fb diminished
+F#
+B minor
+A minor
 C major
-E minor
-F# augmented
-A major-13th
-Bb dominant-11th
 end
+show_specific_chords
