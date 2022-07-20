@@ -82,6 +82,8 @@ public:
   void print_chord_list(std::ostream &ostr);
   std::vector<PianoChordSpecific> chord_list;
   std::string name;
+  void setSpecificChord(int index) { specific_chord = index; }
+  PianoChordSpecific getSpecificChord() { return chord_list[specific_chord]; }
 private:
   std::vector<int> base_chord;
   int specific_chord = 0;

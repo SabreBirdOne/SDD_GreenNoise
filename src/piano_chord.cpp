@@ -335,7 +335,7 @@ void PianoChord::print_chord(std::ostream &ostr)
   PianoChordSpecific *chord = &chord_list[specific_chord];
   for (int i = 0; i < chord->notes.size(); i++)
   {
-    ostr << "|" << chord->notes[i];
+    ostr << "|" << intToNote(chord->notes[i]);
   }
   /*
   ostr << "| ";
