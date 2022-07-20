@@ -1,6 +1,7 @@
 #include "piano_chord.h"
 #include <string>
 #include <math.h>
+#include <stdio.h>
 
 #include <iostream>
 
@@ -120,6 +121,7 @@ void PianoChord::parseChord(std::string name_)
 
 
   std::vector<int> notes;
+  //int notes_file = open("chord_types.json", O_RDONLY);
   if (name_ == "augmented")
   {
     addNotes({5, 9});
@@ -309,7 +311,7 @@ void PianoChord::makeChordList(int min_note, int max_note, int max_distance)
     {
       new_chord[chord_list_vector[i].size() - j] = chord_list_vector[i][j - 1];
     }
-    chord_list.push_back(PianoChordSpecific(new_chord));
+    chord_list.push_back(PianoChordSpecific(new_chord, max_distance));
   }
   return;
 }
@@ -319,7 +321,10 @@ void PianoChord::print_base_chord(std::ostream &ostr)
 {
   for (int i = 0; i < base_chord.size(); i++)
   {
-    ostr << "|" << intToNote(base_chord[i]);
+    std::string note = intToNote(base_chord[i]);
+    note = note.substr(0, note.size() - 1);
+    note += (note.size() == 1) ? " " : "";
+    ostr << "| " << note << " ";
   }
   ostr << "|" << std::endl;
 }

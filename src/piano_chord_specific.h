@@ -8,10 +8,12 @@
 class PianoChordSpecific
 {
 public:
-  PianoChordSpecific(std::vector<int> notes_) : notes(notes_) {};
+  PianoChordSpecific(std::vector<int> notes_, int max_reach_) : notes(notes_), max_reach(max_reach_) {};
   std::vector<int> notes;
-  //std::vector<int> fingerings;
+  std::vector<std::vector<int>> fingerings;
+  float difficulty(std::vector<int> fingerings);
 private:
+  int max_reach;
 };
 
 #endif

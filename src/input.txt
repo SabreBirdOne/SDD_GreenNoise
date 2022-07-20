@@ -1,5 +1,6 @@
 C major
 E minor
 F# augmented
-C major/E
+A major-13th
+Bb dominant-11th
 end

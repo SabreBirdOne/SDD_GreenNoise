@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 
+#define MAX_REACH 17
+
 int main()
 {
   std::ostream &ostr = std::cout;
@@ -23,7 +25,7 @@ int main()
   {
     ostr << "Chord: " << chord_sequence[i].name << std::endl;
     chord_sequence[i].print_base_chord(ostr);
-    chord_sequence[i].makeChordList(0, 87, 19);
+    chord_sequence[i].makeChordList(10, 44, MAX_REACH);
     ostr << "Possible Chord Permutations:" << std::endl;
     chord_sequence[i].print_chord_list(ostr);
     ostr << std::endl;
