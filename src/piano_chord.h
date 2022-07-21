@@ -85,6 +85,11 @@ public:
   void setSpecificChord(int index) { specific_chord = index; }
   PianoChordSpecific getSpecificChord() { return chord_list[specific_chord]; }
 
+  void setBeatStart(double new_beat_start) { beat_start = new_beat_start; }
+  double getBeatStart() { return beat_start; }
+
+  void setBeatDuration(double new_beat_duration) { beat_duration = new_beat_duration; }
+  double getBeatDuration() { return beat_duration; }
 
 private:
   std::vector<int> base_chord;
