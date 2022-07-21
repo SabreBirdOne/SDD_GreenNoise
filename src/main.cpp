@@ -29,7 +29,7 @@ int main()
   }
   if (chord == "quit") return 0;
   std::cout << "Chord Sequence Saved!" << std::endl;
-  for (int i = 0; i < chord_sequence.size(); i++)
+  for (unsigned int i = 0; i < chord_sequence.size(); i++)
   {
     std::cout << "Creating chord list for " << chord_sequence[i].name << "..." << std::endl;
     usleep(30000);
@@ -50,7 +50,7 @@ int main()
   {
     if (input == "show_all_chords")
     {
-      for (int i = 0; i < chord_sequence.size(); i++)
+      for (unsigned int i = 0; i < chord_sequence.size(); i++)
       {
         ostr << "Chord: " << chord_sequence[i].name << std::endl;
         chord_sequence[i].print_base_chord(ostr);
@@ -61,7 +61,7 @@ int main()
     }
     else if (input == ("show_specific_chords"))
     {
-      for (int i = 0; i < chord_sequence.size(); i++)
+      for (unsigned int i = 0; i < chord_sequence.size(); i++)
       {
         ostr << chord_sequence[i].name << ": ";
         chord_sequence[i].print_chord(ostr);
@@ -70,7 +70,7 @@ int main()
     else if (input == "change_specific_chord")
     {
       ostr << "All chords:" << std::endl;
-      for (int i = 0; i < chord_sequence.size(); i++)
+      for (unsigned int i = 0; i < chord_sequence.size(); i++)
       {
         ostr << i << ": " << chord_sequence[i].name << std::endl;
       }
@@ -78,11 +78,11 @@ int main()
       ostr << "Select a chord: ";
       istr >> chord_selection;
       ostr << "Choose from the following list of chord permutations:" << std::endl;
-      for (int i = 0; i < chord_sequence[chord_selection].chord_list.size(); i++)
+      for (unsigned int i = 0; i < chord_sequence[chord_selection].chord_list.size(); i++)
       {
         PianoChordSpecific *chord = &(chord_sequence[chord_selection].chord_list[i]);
         ostr << i << ": ";
-        for (int j = 0; j < chord->notes.size(); j++)
+        for (unsigned int j = 0; j < chord->notes.size(); j++)
         {
           std::string note = intToNote(chord->notes[j]);
           note += (note.size() == 2) ? " " : "";
@@ -114,7 +114,7 @@ std::pair<int, std::vector<PianoChord>> findEasiestPath(std::vector<PianoChord> 
     int center_note = 27;
     int best = chord_sequence[starting_chord].chord_list[0].notes[0];
     int best_index = 0;
-    for (int i = 1; i < chord_sequence[starting_chord].chord_list.size(); i++)
+    for (unsigned int i = 1; i < chord_sequence[starting_chord].chord_list.size(); i++)
     {
       if (abs(chord_sequence[starting_chord].chord_list[i].notes[0] - center_note) < abs(best - center_note))
       {
@@ -129,7 +129,7 @@ std::pair<int, std::vector<PianoChord>> findEasiestPath(std::vector<PianoChord> 
   std::pair<int, std::vector<PianoChord>> min_difficulty = findEasiestPath(chord_sequence, starting_chord+1);
   min_difficulty.first += difficulty(chord_sequence[starting_chord].getSpecificChord(), min_difficulty.second[starting_chord+1].getSpecificChord());
   int min_difficulty_index = 0;
-  for (int i = 1; i < chord_sequence[starting_chord].chord_list.size(); i++)
+  for (unsigned int i = 1; i < chord_sequence[starting_chord].chord_list.size(); i++)
   {
     chord_sequence[starting_chord].setSpecificChord(i);
     std::pair<int, std::vector<PianoChord>> new_difficulty = findEasiestPath(chord_sequence, starting_chord+1);

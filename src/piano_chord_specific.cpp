@@ -31,7 +31,7 @@ float PianoChordSpecific::difficulty(std::vector<int> fingerings)
 {
   float difficulty = 0.0;
   int finger1 = fingerings[0];
-  for (int i = 1; i < fingerings.size(); i++)
+  for (unsigned int i = 1; i < fingerings.size(); i++)
   {
     int finger2 = fingerings[i];
     int distance = abs(finger2 - finger1);
