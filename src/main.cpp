@@ -1,10 +1,15 @@
 #include "piano_chord.h"
+#include "song_data.h"
+#include "song_list_entry.h"
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
 #include <unistd.h>
 #include <utility>
 #include <math.h>
+#include <list>
+typedef std::list<PianoChord> ChordContainer;
+typedef std::map<std::string, std::string> MetaDataContainer; 
 
 #define MAX_REACH 17
 
@@ -100,6 +105,54 @@ int main()
     if (input != "") ostr << std::endl << "Enter Next Command: ";
     std::getline(istr, input);
   }
+
+  ostr << "\ntesting song_list_entry and song_data" << std::endl;
+  
+  std::list<PianoChord> chords (chord_sequence.begin(), chord_sequence.end());
+  double duration = 100;
+  SongData song_data (chords, duration);
+
+  ostr << "Chord set inside SongData: " << std::endl;
+  for (ChordContainer::const_iterator itr = song_data.getChordSet().begin();
+    itr != song_data.getChordSet().end(); itr++){
+    
+    for (unsigned int i = 0; i < (itr->getBaseChord()).size(); i++)
+    {
+      std::string note = intToNote((itr->getBaseChord())[i]);
+      note = note.substr(0, note.size() - 1);
+      note += (note.size() == 1) ? " " : "";
+      ostr << "| " << note << " ";
+    }
+    ostr << "|" << std::endl;
+  }
+
+  MetaDataContainer md;
+  md["Song Name"] = "Never gonna give you up";
+  md["Composer"] = "Rick Astley";
+  md["Album"] = "Operation Carnate Medallion playlist";
+
+  SongListEntry sle (song_data, md);
+
+  ostr << "Chord set inside SongListEntry: " << std::endl;
+  for (ChordContainer::const_iterator itr = sle.getSongData().getChordSet().begin();
+    itr != sle.getSongData().getChordSet().end(); itr++){
+    
+    for (unsigned int i = 0; i < (itr->getBaseChord()).size(); i++)
+    {
+      std::string note = intToNote((itr->getBaseChord())[i]);
+      note = note.substr(0, note.size() - 1);
+      note += (note.size() == 1) ? " " : "";
+      ostr << "| " << note << " ";
+    }
+    ostr << "|" << std::endl;
+  }
+
+  ostr << "SongListEntry metadata: " << std::endl;
+  for (MetaDataContainer::const_iterator itr = sle.getMetaData().begin();
+    itr != sle.getMetaData().end(); itr++){
+    ostr << itr->first << ": " << itr->second << std::endl;
+  }
+
 
   return 0;
 }

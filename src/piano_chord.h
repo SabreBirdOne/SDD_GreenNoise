@@ -91,6 +91,8 @@ public:
   void setBeatDuration(double new_beat_duration) { beat_duration = new_beat_duration; }
   double getBeatDuration() { return beat_duration; }
 
+  const std::vector<int>& getBaseChord() const { return base_chord; }
+
 private:
   std::vector<int> base_chord;
   int specific_chord = 0;
