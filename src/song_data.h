@@ -11,8 +11,15 @@ private:
 	double total_beat_duration;
 
 public:
-	SongData(const std::unordered_set& input_chord_set, double duration);
+	// Constructor
+	SongData(const std::unordered_set<PianoChord>& input_chord_set, double duration);
 	
+	// Accessors
+	const std::unordered_set<PianoChord>& getChordSet() const;
+	double getTotalDuration() const;
+
+	// Modifiers
+
 
 };
 
