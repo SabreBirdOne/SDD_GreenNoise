@@ -14,7 +14,10 @@ private:
 
 public:
 	// Constructor
+	SongData();
 	SongData(const ChordContainer& input_chord_set, double duration);
+	SongData(const SongData& sd);
+	void operator=(const SongData& sd);
 	
 	// Accessors
 	const ChordContainer& getChordSet() const;
