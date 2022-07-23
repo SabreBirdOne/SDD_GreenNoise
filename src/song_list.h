@@ -2,8 +2,7 @@
 #define song_list_h
 
 #include "song_list_entry.h"
-#include "observable.h"
-#include "observer.h"
+#include "song_list_observer.h"
 
 #include <list>
 /* 
@@ -11,22 +10,23 @@
 	- Store the songs in a List. 
 	- Loading songs from a folder on program startup
 
-	This class is the Model class for the Model-View-Controller 
-	Design pattern. 
+	This class is the Observable class for the Observer 
+	design pattern. 
 */
 
-// class Observable // pull model Observable-Observer pair
-// private:
-// 	std::list<Observer> observer_list;
-
-class SongList : public Observable {
+class SongList {
 private:
+	std::list<SongListObserver> observer_list;
 	std::list<SongListEntry> entries;
 
 public:
 	// constructors
 	SongList();
 	SongList(const std::list<SongListEntry>& input_entries);
-}
+
+	// special: observer design pattern
+	void attach(const SongListObserver& new_observer);
+	void notifyObservers();
+};
 
 #endif
