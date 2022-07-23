@@ -3,6 +3,7 @@
 
 #include "song_list_entry.h"
 #include "observable.h"
+#include "observer.h"
 
 #include <list>
 /* 
@@ -26,10 +27,6 @@ public:
 	// constructors
 	SongList();
 	SongList(const std::list<SongListEntry>& input_entries);
-
-	// special - Observer design pattern
-	void attach(const Observer& new_observer);
-	void notify(const Observable& subject);
 }
 
 #endif
