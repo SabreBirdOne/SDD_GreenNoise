@@ -27,6 +27,10 @@ public:
 	// special: observer design pattern
 	void attach(const SongListObserver& new_observer);
 	void notifyObservers();
+
+	// modifiers
+	void addEntry(const SongListEntry& new_entry) { entries.push_back(new_entry); }
+	void removeEntry(std::list<SongListEntry>::iterator& entry_itr);
 };
 
 #endif
