@@ -35,9 +35,12 @@ void SongList::notifyObservers(){
 	}
 }
 
-// void addEntry(const SongListEntry& new_entry); 
-// has been implemented in header file
+void addEntry(const SongListEntry& new_entry){
+	entries.push_back(new_entry); 
+	notifyObservers();
+}
 void SongList::removeEntry(std::list<SongListEntry>::iterator& entry_itr){
 	entries.erase(entry_itr);
+	notifyObservers();
 }
 
