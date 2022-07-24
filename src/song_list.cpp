@@ -35,7 +35,7 @@ void SongList::notifyObservers(){
 	}
 }
 
-void addEntry(const SongListEntry& new_entry){
+void SongList::addEntry(const SongListEntry& new_entry){
 	entries.push_back(new_entry); 
 	notifyObservers();
 }
