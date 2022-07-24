@@ -7,10 +7,7 @@
 
 typedef std::list<PianoChord> ChordContainer;
 
-/* 
-	While debugging, call a checkRep() function to check if the object's state is still
-	valid after	every modifying function call.
-
+/*
 	A concrete class. SongData stores the chord data about the song and the song's duration.
 	Measurements of time are in beats.
 	
