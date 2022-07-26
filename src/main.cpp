@@ -104,13 +104,15 @@ int main()
     if (input != "") ostr << std::endl << "Enter Next Command: ";
     std::getline(istr, input);
   }
-
-  ostr << "\ntesting song_list_entry and song_data" << std::endl;
+  
+  ostr << std::endl;
+  ostr << "Testing song_list_entry and song_data" << std::endl;
   
   std::list<PianoChord> chords (chord_sequence.begin(), chord_sequence.end());
   double duration = 100;
   SongData song_data (chords, duration);
 
+  ostr << std::endl;
   ostr << "Chord set inside SongData: " << std::endl;
   for (ChordContainer::const_iterator itr = song_data.getChordSet().begin();
     itr != song_data.getChordSet().end(); itr++){
@@ -127,6 +129,7 @@ int main()
 
   SongListEntry sle (song_data);
 
+  ostr << std::endl;
   ostr << "Chord set inside SongListEntry: " << std::endl;
   for (ChordContainer::const_iterator itr = sle.getSongData().getChordSet().begin();
     itr != sle.getSongData().getChordSet().end(); itr++){
@@ -140,14 +143,25 @@ int main()
     }
     ostr << "|" << std::endl;
   }
+  
+  ostr << std::endl;
+  ostr << "SongListEntry metadata (print method):" << std::endl;
+  sle.printMetaData(ostr);
+  
+  ostr << std::endl;
+  ostr << "SongListEntry: testing editMetaData" << std::endl;
+  sle.editMetaData("SONG NAME", "Never gonna give you up");
+  sle.editMetaData("COMPOSER", "Rick Astley");
+  sle.editMetaData("ALBUM", "Operation Carnate Medallion playlist");
+  sle.editMetaData("DATE ADDED TO LIST", "Since the end of time~~");
+  sle.editMetaData("EXTRA INFO", "LET\'S MAKE SOME NOISE");
+  
+  sle.printMetaData(ostr);
 
-  ostr << "SongListEntry metadata (random print): " << std::endl;
-  for (MetaDataContainer::const_iterator itr = sle.getMetaData().begin();
-    itr != sle.getMetaData().end(); itr++){
-    ostr << itr->first << ": " << itr->second;
-    if (itr->first != "DATE ADDED TO LIST") ostr << std::endl;
-  }
-
+  ostr << std::endl;
+  ostr << "SongListEntry: testing getSpecificMetaData" << std::endl;
+  ostr << "SONG NAME: " << sle.getSpecificMetaData("SONG NAME") << std::endl;
+  ostr << "EXTRA INFO: " << sle.getSpecificMetaData("EXTRA INFO") << std::endl;
 
   return 0;
 }
