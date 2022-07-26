@@ -171,12 +171,12 @@ std::pair<int, std::vector<PianoChord>> findEasiestPath(std::vector<PianoChord> 
     }
   }
   chord_sequence[0].setSpecificChord(best_index);
-  for (int i = 1; i < chord_sequence.size(); i++)
+  for (unsigned int i = 1; i < chord_sequence.size(); i++)
   {
     chord_sequence[i].setSpecificChord(0);
     int min_difficulty = difficulty(chord_sequence[i-1].getSpecificChord(), chord_sequence[i].getSpecificChord());
     int min_difficulty_index = 0;
-    for (int j = 1; j < chord_sequence[i].chord_list.size(); j++)
+    for (unsigned int j = 1; j < chord_sequence[i].chord_list.size(); j++)
     {
       chord_sequence[i].setSpecificChord(j);
       int new_difficulty = difficulty(chord_sequence[i-1].getSpecificChord(), chord_sequence[i].getSpecificChord());
