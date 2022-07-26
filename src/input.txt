@@ -1,9 +1,7 @@
-A major
-Eb augmented
-Fb diminished
-F#
-B minor
-A minor
-C major
+F minor
+Eb dominant
+Db dominant
+C dominant
+F minor
 end
 show_specific_chords

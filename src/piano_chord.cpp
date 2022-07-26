@@ -57,7 +57,7 @@ void PianoChord::addNotes(std::vector<int> notes)
     for (unsigned int i = 0; i < notes.size(); i++)
     {
       new_note = base_chord[1] + notes[i] - 1;
-      if (new_note > 12) new_note %= 12;
+      if (new_note >= 12) new_note %= 12;
       
       if (new_note == base_chord[0])
       {
@@ -75,7 +75,7 @@ void PianoChord::addNotes(std::vector<int> notes)
     for (unsigned int i = 0; i < notes.size(); i++)
     {
       new_note = base_chord[0] + notes[i] - 1;
-      if (new_note > 12) new_note %= 12;
+      if (new_note >= 12) new_note %= 12;
       base_chord.push_back(new_note);
     }
   }
@@ -246,6 +246,10 @@ void PianoChord::parseChord(std::string name_)
   else
   {
   }
+  if (base_chord.size() == 0)
+  {
+    std::cerr << "ERROR: " << root_note << " " << name_ << " is an invalid chord name! Chord was not added to the list." << std::endl;
+  }
 }
 
 
@@ -316,6 +320,10 @@ void PianoChord::makeChordList(int min_note, int max_note, int max_distance)
       new_chord[chord_list_vector[i].size() - j] = chord_list_vector[i][j - 1];
     }
     chord_list.push_back(PianoChordSpecific(new_chord, max_distance));
+  }
+  if (chord_list.size() == 0)
+  {
+    std::cerr << "WARNING: No playable chords for " << name << "." << std::endl;
   }
   return;
 }

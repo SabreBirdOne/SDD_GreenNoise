@@ -85,6 +85,8 @@ public:
   std::string name;
   void setSpecificChord(int index) { specific_chord = index; }
   PianoChordSpecific getSpecificChord() { return chord_list[specific_chord]; }
+  int getSpecificChordIndex() { return specific_chord; }
+
 
   void setBeatStart(double new_beat_start) { beat_start = new_beat_start; }
   double getBeatStart() const { return beat_start; }
