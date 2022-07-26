@@ -2,10 +2,10 @@
 #define song_list_entry_h
 
 #include <string>
-#include <map>
+#include <unordered_map>
 #include "song_data.h"
 
-typedef std::map<std::string, std::string> MetaDataContainer; 
+typedef std::unordered_map<std::string, std::string> MetaDataContainer; 
 /*
 	A concrete class. Represents an entry inside the song list. 
 	Decorator design pattern: A wrapper/decorator around SongData. 
@@ -30,13 +30,6 @@ public:
 		arbitrary (default) metadata.
 	*/
 	SongListEntry(const SongData& sd);
-
-	/* SPECS:
-		@PARAM: 
-			sd: SongData to construct an entry
-			md: metadata 
-	*/
-	SongListEntry(const SongData& sd, const MetaDataContainer& md);
 
 	// accessors
 	

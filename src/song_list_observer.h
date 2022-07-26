@@ -13,6 +13,7 @@
 class SongListObserver {
 private:
 	std::list<SongListEntry> current_data;
+	int number_of_entries;
 public:
 	/* SPECS:
 		@PARAM: data: the data from the SongList object

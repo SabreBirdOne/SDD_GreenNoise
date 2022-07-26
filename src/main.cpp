@@ -8,8 +8,9 @@
 #include <utility>
 #include <math.h>
 #include <list>
+#include <unordered_map>
 typedef std::list<PianoChord> ChordContainer;
-typedef std::map<std::string, std::string> MetaDataContainer; 
+typedef std::unordered_map<std::string, std::string> MetaDataContainer; 
 
 #define MAX_REACH 17
 
@@ -124,12 +125,7 @@ int main()
     ostr << "|" << std::endl;
   }
 
-  MetaDataContainer md;
-  md["Song Name"] = "Never gonna give you up";
-  md["Composer"] = "Rick Astley";
-  md["Album"] = "Operation Carnate Medallion playlist";
-
-  SongListEntry sle (song_data, md);
+  SongListEntry sle (song_data);
 
   ostr << "Chord set inside SongListEntry: " << std::endl;
   for (ChordContainer::const_iterator itr = sle.getSongData().getChordSet().begin();
@@ -145,10 +141,11 @@ int main()
     ostr << "|" << std::endl;
   }
 
-  ostr << "SongListEntry metadata: " << std::endl;
+  ostr << "SongListEntry metadata (random print): " << std::endl;
   for (MetaDataContainer::const_iterator itr = sle.getMetaData().begin();
     itr != sle.getMetaData().end(); itr++){
-    ostr << itr->first << ": " << itr->second << std::endl;
+    ostr << itr->first << ": " << itr->second;
+    if (itr->first != "DATE ADDED TO LIST") ostr << std::endl;
   }
 
 

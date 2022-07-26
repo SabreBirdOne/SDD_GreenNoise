@@ -27,6 +27,7 @@ SongList::SongList(const std::list<SongListEntry>& input_entries){
 // special: observer design pattern
 void SongList::attach(const SongListObserver& new_observer){
 	observer_list.push_back(new_observer);
+	notifyObservers();
 }
 void SongList::notifyObservers(){
 	for (std::list<SongListObserver>::iterator itr = observer_list.begin();
