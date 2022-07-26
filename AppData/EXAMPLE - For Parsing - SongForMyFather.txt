@@ -1,0 +1,12 @@
+Title: Song for my father
+Composer: Horace Silver
+Album: Song for my father
+Date Added: July 26th
+Extra Info: Song is good 
+Song Data:
+F minor
+Eb dominant
+Db dominant
+C dominant
+F minor
+end
