@@ -2,8 +2,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <unordered_map>
 #include "song_list_entry.h"
 #include "song_data.h"
+#include "song_list_data_parser_txt.h"
 // https://cplusplus.com/reference/string/string/getline/
 
 typedef std::unordered_map<std::string, std::string> MetaDataContainer;
@@ -32,12 +34,12 @@ typedef std::list<PianoChord> ChordContainer;
   (chord data: each chord on its own line.)
   end (delimiter to end chord data)
 */
-static SongListEntry SongListDataParserTxt::parse(const std::string& filename){
+SongListEntry SongListDataParserTxt::parse(const std::string& filename){
 	std::ifstream infile;
   infile.open(filename);
 
   // parse meta data first
-  MetaDataContainer md();
+  MetaDataContainer md;
   std::string song_name;
   std::string composer;
   std::string album;

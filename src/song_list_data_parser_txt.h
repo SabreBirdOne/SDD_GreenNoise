@@ -8,6 +8,7 @@
 #include "song_list_entry.h"
 #include "song_data.h"
 
+
 typedef std::unordered_map<std::string, std::string> MetaDataContainer;
 /*
 	A concrete class. It is mainly responsible for parsing 
@@ -38,7 +39,7 @@ public:
 		@PARAM: filename: name of the file to parse from
 		@RETURNS: a song list entry
 	*/
-	static SongListEntry parse(const std::string& filename);
+	SongListEntry parse(const std::string& filename);
 };
 
 #endif
