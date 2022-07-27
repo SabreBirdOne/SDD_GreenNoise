@@ -1,6 +1,8 @@
+// Interim release main.cpp
 #include "piano_chord.h"
 #include "song_data.h"
 #include "song_list_entry.h"
+#include "song_list_data_parser_txt.h"
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
@@ -162,6 +164,8 @@ int main()
   ostr << "SongListEntry: testing getSpecificMetaData" << std::endl;
   ostr << "SONG NAME: " << sle.getSpecificMetaData("SONG NAME") << std::endl;
   ostr << "EXTRA INFO: " << sle.getSpecificMetaData("EXTRA INFO") << std::endl;
+
+  SongListEntry parsed_sle = 
 
   return 0;
 }

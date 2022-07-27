@@ -4,6 +4,7 @@
 #include <string>
 #include "song_list_entry.h"
 #include "song_data.h"
+// https://cplusplus.com/reference/string/string/getline/
 
 typedef std::unordered_map<std::string, std::string> MetaDataContainer;
 typedef std::list<PianoChord> ChordContainer;
@@ -32,12 +33,29 @@ typedef std::list<PianoChord> ChordContainer;
   end (delimiter to end chord data)
 */
 static SongListEntry SongListDataParserTxt::parse(const std::string& filename){
-	std::ofstream myfile;
-  myfile.open(filename);
+	std::ifstream infile;
+  infile.open(filename);
 
   // parse meta data first
   MetaDataContainer md();
-  
+  std::string song_name;
+  std::string composer;
+  std::string album;
+  std::string date_added_to_list;
+  std::string extra_info;
+
+  std::getline(infile, song_name);
+  std::getline(infile, composer);
+  std::getline(infile, album);
+  std::getline(infile, date_added_to_list);
+  std::getline(infile, extra_info, '|');
+
+  md["SONG NAME"] = song_name;
+  md["COMPOSER"] = composer;
+  md["ALBUM"] = album;
+  md["DATE ADDED TO LIST"] = date_added_to_list;
+  md["EXTRA INFO"] = extra_info;
+
   // parse song data
   double total_beat_duration = 0.0;
   ChordContainer chord_set;
@@ -46,7 +64,7 @@ static SongListEntry SongListDataParserTxt::parse(const std::string& filename){
 
   // (re)construct SongListEntry
   SongListEntry sle(sd, md);
-  myfile.close();
+  infile.close();
 
   return sle;
 }
