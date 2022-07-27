@@ -11,15 +11,6 @@
 typedef std::unordered_map<std::string, std::string> MetaDataContainer;
 typedef std::list<PianoChord> ChordContainer;
 
-/*
-	SongListEntry has:
-		metadata: mapping category to content
-		songdata: 
-			total_beat_duration: double
-			chord_set: collection of PianoChords.
-				PianoChord has:
-*/
-
 /* SPECS:
 	@PARAM: filename: name of the file to parse from
 	@RETURNS: a song list entry

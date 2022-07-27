@@ -165,9 +165,12 @@ int main()
   ostr << "SONG NAME: " << sle.getSpecificMetaData("SONG NAME") << std::endl;
   ostr << "EXTRA INFO: " << sle.getSpecificMetaData("EXTRA INFO") << std::endl;
 
+  ostr << std::endl;
   ostr << "Testing SongListEntry and SongListDataParserTxt" << std::endl;
+  ostr << "parsing..." << std::endl;
   SongListDataParserTxt parser;
   SongListEntry parsed_sle = parser.parse("../AppData/EXAMPLE - For Parsing - SongForMyFather.txt");
+  ostr << "printing metadata:" << std::endl;
   parsed_sle.printMetaData(ostr);
 
   return 0;

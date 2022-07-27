@@ -11,17 +11,16 @@
 
 typedef std::unordered_map<std::string, std::string> MetaDataContainer;
 /*
-	A concrete class. It is mainly responsible for parsing 
-	specially formatted .txt files into data used to reconstruct 
-	SongListEntry objects.
+	A concrete class. It parses ONE specially formatted .txt file
+	to construct a SongListEntry object.
 
-	Notes: when the app terminates, we'd like a form of persistent 
+	When the app terminates, we'd like a form of persistent 
 	data so that when the app is run again, the song list data
-	is restored and ready for use. 
+	is restored and ready for use.
 
-	To accomplish this, we plan on writing all data into specially formatted .txt when 
-	the app closes, and read from those .txt files when the app is 
-	opened. Each .txt file represents an entry in the song list.
+	Each .txt file represents an entry in the song list.
+	All .txt files for song list entries are in the AppData directory.
+	The path is "../AppData/song_name_data.txt"
 
 	.txt data format:
 	song name\n
