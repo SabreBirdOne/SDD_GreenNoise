@@ -3,6 +3,7 @@
 #include "song_data.h"
 #include "song_list_entry.h"
 #include "song_list_data_parser_txt.h"
+#include "song_list_data_writer_txt.h"
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
@@ -11,6 +12,7 @@
 #include <math.h>
 #include <list>
 #include <unordered_map>
+
 typedef std::list<PianoChord> ChordContainer;
 typedef std::unordered_map<std::string, std::string> MetaDataContainer; 
 
@@ -173,6 +175,22 @@ int main()
   ostr << "printing metadata:" << std::endl;
   parsed_sle.printMetaData(ostr);
 
+  ostr << std::endl;
+  ostr << "Testing SongListEntry and SongListDataWriterTxt" << std::endl;
+  ostr << "creating new SongListEntry: " << std::endl;
+  sle.editMetaData("SONG NAME", "Blue Skies (Infinity remix)");
+  sle.editMetaData("COMPOSER", "Project Aces");
+  sle.editMetaData("ALBUM", "Ace Combat Infinity Original Soundtrack");
+  sle.editMetaData("DATE ADDED TO LIST", "Right now");
+  sle.editMetaData("EXTRA INFO", "For Post Stall Maneuver addicts"); 
+  sle.printMetaData(ostr);
+  
+  ostr << std::endl;
+  ostr << "writing data to blue_skies.txt" << std::endl;
+  SongListDataWriterTxt writer;
+  writer.writeData("../AppData/blue_skies.txt", sle);
+
+  ostr << "contents has been written in blue_skies.txt" << std::endl;
   return 0;
 }
 

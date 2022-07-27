@@ -25,14 +25,14 @@ typedef std::unordered_map<std::string, std::string> MetaDataContainer;
 	@EFFECTS: writes data from SongListEntry to .txt file
 */
 void SongListDataWriterTxt::writeData
-(const std::string& filename, const SongListEntry& sle){
+(const std::string& filename, SongListEntry& sle) {
 	std::ofstream outfile;
   outfile.open(filename);
   
   // write metadata first
  	const std::string ordered_keys[] = 
 	{ "SONG NAME", "COMPOSER", "ALBUM", "DATE ADDED TO LIST", "EXTRA INFO" };
-	for (int i = 0; i < sle.getAllMetaData().size(); i++){
+	for (unsigned int i = 0; i < sle.getAllMetaData().size(); i++){
 		outfile << sle.getSpecificMetaData(ordered_keys[i]) << std::endl;
 	}
 	outfile << " | " << std::endl;

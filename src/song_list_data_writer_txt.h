@@ -40,7 +40,7 @@ public:
 			sle: song list entry to write from
 		@EFFECTS: writes data from SongListEntry to .txt file
 	*/
-	void writeData(const std::string& filename, const SongListEntry& sle);
+	void writeData(const std::string& filename, SongListEntry& sle);
 };
 
 #endif
