@@ -22,11 +22,15 @@ typedef std::unordered_map<std::string, std::string> MetaDataContainer;
 	the app closes, and read from those .txt files when the app is 
 	opened. Each .txt file represents an entry in the song list.
 
-	SongListEntry has:
-		metadata: mapping category to content
-		songdata: 
-			total_beat_duration: double
-			chord_set: collection of PianoChords.
+	.txt data format:
+	song name\n
+	composer\n
+	album\n
+	date added to list\n
+	extra info \r\t\n\r...
+	| (needs this delimiter)
+	(song data: each chord on its own line.)
+	end (delimiter to end chord data)
 */
 class SongListDataParserTxt {
 public:

@@ -1,9 +1,8 @@
-Title: Song for my father
-Composer: Horace Silver
-Album: Song for my father
-Date Added: July 26th
-Extra Info: Song is good 
-Song Data:
+Song for my father
+Horace Silver
+Song for my father
+Wed Jul 27 13:48:53 2022
+Song is good | 
 F minor
 Eb dominant
 Db dominant
