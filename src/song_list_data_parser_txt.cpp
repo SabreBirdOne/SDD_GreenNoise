@@ -28,7 +28,7 @@ typedef std::list<PianoChord> ChordContainer;
   date added to list\n
   extra info \r\t\n\r...
   | (delimiter to end extra info data)
-  (song data: each chord on its own line.)
+  (chord data: each chord on its own line.)
   end (delimiter to end chord data)
 */
 static SongListEntry SongListDataParserTxt::parse(const std::string& filename){
@@ -37,7 +37,7 @@ static SongListEntry SongListDataParserTxt::parse(const std::string& filename){
 
   // parse meta data first
   MetaDataContainer md();
-
+  
   // parse song data
   double total_beat_duration = 0.0;
   ChordContainer chord_set;
