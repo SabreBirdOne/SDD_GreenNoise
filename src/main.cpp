@@ -113,8 +113,7 @@ int main()
   ostr << "Testing song_list_entry and song_data" << std::endl;
   
   std::list<PianoChord> chords (chord_sequence.begin(), chord_sequence.end());
-  double duration = 100;
-  SongData song_data (chords, duration);
+  SongData song_data (chords);
 
   ostr << std::endl;
   ostr << "Chord set inside SongData: " << std::endl;

@@ -50,10 +50,9 @@ SongListEntry SongListDataParserTxt::parse(const std::string& filename){
   md["EXTRA INFO"] = extra_info;
 
   // parse song data
-  double total_beat_duration = 0.0;
   ChordContainer chord_set;
   
-  SongData sd(chord_set, total_beat_duration);
+  SongData sd(chord_set);
 
   // (re)construct SongListEntry
   SongListEntry sle(sd, md);

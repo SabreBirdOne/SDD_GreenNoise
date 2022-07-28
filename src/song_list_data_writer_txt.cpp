@@ -5,7 +5,9 @@
 #include "song_list_entry.h"
 #include "song_data.h"
 #include "song_list_data_writer_txt.h"
+
 typedef std::unordered_map<std::string, std::string> MetaDataContainer;
+typedef std::list<PianoChord> ChordContainer;
 /*
 	.txt data format:
 	song name\n
@@ -15,6 +17,7 @@ typedef std::unordered_map<std::string, std::string> MetaDataContainer;
 	extra info \r\t\n\r...
 	| (needs this delimiter)
 	(song data: each chord on its own line.)
+	chord_name chord_inversion_int start_time duration_time
 	end (delimiter to end chord data)
 */
 
@@ -39,7 +42,20 @@ void SongListDataWriterTxt::writeData
 
   // write songdata
   SongData sd = sle.getSongData();
-
+  ChordContainer chord_set = sd.getChordSet();
+  double total_beat_duration = sd.getTotalDuration();
+  
+  for (ChordContainer::iterator itr = chord_set.begin();
+  	itr != chord_set.end(); itr++){
+  	// write the name of the chord
+  	outfile << itr->getName() << " ";
+  	// write the specific chord index
+  	outfile << itr->getSpecificChordIndex() << " ";
+  	// write the start time and duration time
+  	outfile << itr->getBeatStart() << " " << itr->getBeatDuration() << std::endl;
+  }
+  outfile << total_beat_duration << std::endl;
+  outfile << "end" << std::endl;
 
   outfile.close();
 }

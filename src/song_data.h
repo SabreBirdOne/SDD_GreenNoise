@@ -34,12 +34,10 @@ public:
 	SongData();
 
 	/* SPECS:
-		@PARAM:
-			input_chord_set: a set of chords going in.
-			duration: total duration of the song in beats
+		@PARAM:	input_chord_set: a set of chords going in.
 		@EFFECTS: create SongData with initial chord set and duration.
 	*/
-	SongData(const ChordContainer& input_chord_set, double duration);
+	SongData(const ChordContainer& input_chord_set);
 	
 	/* SPECS:
 		@PARAM: sd: a SongData object

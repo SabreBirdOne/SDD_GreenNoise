@@ -47,9 +47,16 @@ SongData::SongData(){
 	checkRep();
 }
 
-SongData::SongData(const ChordContainer& input_chord_set, double duration){
+SongData::SongData(const ChordContainer& input_chord_set){
 	chord_set = input_chord_set;
-	total_beat_duration = duration;
+	total_beat_duration = 0.0;
+	for (ChordContainer::const_iterator itr = chord_set.begin();
+		itr != chord_set.end(); itr++){
+		double chord_end_time = itr->getBeatStart() + itr->getBeatDuration();
+		if (total_beat_duration < chord_end_time){
+			total_beat_duration = chord_end_time;
+		}
+	}
 	checkRep();
 }
 SongData::SongData(const SongData& sd){

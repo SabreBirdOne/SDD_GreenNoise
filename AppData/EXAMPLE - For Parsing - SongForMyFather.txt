@@ -5,9 +5,10 @@ Wed Jul 27 13:48:53 2022
 Song is good 
  is that Mike's fav song??? 
 Your mom | 
-F minor
-Eb dominant
-Db dominant
-C dominant
-F minor
+F minor 5 4 5
+Eb dominant 4 5 3
+Db dominant 6 7 4
+C dominant 4 5 6
+F minor 1 2 3
+11
 end
