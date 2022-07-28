@@ -82,7 +82,7 @@ public:
   void print_chord(std::ostream &ostr);
   void print_chord_list(std::ostream &ostr);
   std::vector<PianoChordSpecific> chord_list;
-  std::string name;
+  std::string getName() { return name; }
   void setSpecificChord(int index) { specific_chord = index; }
   PianoChordSpecific getSpecificChord() { return chord_list[specific_chord]; }
   int getSpecificChordIndex() { return specific_chord; }
@@ -97,6 +97,7 @@ public:
   const std::vector<int>& getBaseChord() const { return base_chord; }
 
 private:
+  std::string name;
   std::vector<int> base_chord;
   int specific_chord = 0;
   bool static_bass_note;

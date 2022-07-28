@@ -41,10 +41,10 @@ int main()
   std::cout << "Chord Sequence Saved!" << std::endl;
   for (unsigned int i = 0; i < chord_sequence.size(); i++)
   {
-    std::cout << "Creating chord list for " << chord_sequence[i].name << "..." << std::endl;
+    std::cout << "Creating chord list for " << chord_sequence[i].getName() << "..." << std::endl;
     usleep(30000);
     chord_sequence[i].makeChordList(10, 44, MAX_REACH);
-    std::cout << chord_sequence[i].name << ": Chord list created!" << std::endl;
+    std::cout << chord_sequence[i].getName() << ": Chord list created!" << std::endl;
   }
   std::cout << "Generating specific chord path..." << std::endl;
   std::pair<int, std::vector<PianoChord>> result = findEasiestPath(chord_sequence, 0);
@@ -60,7 +60,7 @@ int main()
     {
       for (unsigned int i = 0; i < chord_sequence.size(); i++)
       {
-        ostr << "Chord: " << chord_sequence[i].name << std::endl;
+        ostr << "Chord: " << chord_sequence[i].getName() << std::endl;
         chord_sequence[i].print_base_chord(ostr);
         ostr << "Possible Chord Permutations:" << std::endl;
         chord_sequence[i].print_chord_list(ostr);
@@ -71,7 +71,7 @@ int main()
     {
       for (unsigned int i = 0; i < chord_sequence.size(); i++)
       {
-        ostr << chord_sequence[i].name << ": ";
+        ostr << chord_sequence[i].getName() << ": ";
         chord_sequence[i].print_chord(ostr);
       }
     }
@@ -80,7 +80,7 @@ int main()
       ostr << "All chords:" << std::endl;
       for (unsigned int i = 0; i < chord_sequence.size(); i++)
       {
-        ostr << i << ": " << chord_sequence[i].name << std::endl;
+        ostr << i << ": " << chord_sequence[i].getName() << std::endl;
       }
       int chord_selection;
       ostr << "Select a chord: ";
@@ -102,7 +102,7 @@ int main()
       ostr << "Select a permutation: ";
       std::cin >> specific_chord_selection;
       chord_sequence[chord_selection].setSpecificChord(specific_chord_selection);
-      ostr << "Chord " << chord_sequence[chord_selection].name << " now set to option " << specific_chord_selection << std::endl;
+      ostr << "Chord " << chord_sequence[chord_selection].getName() << " now set to option " << specific_chord_selection << std::endl;
     }
 
     if (input != "") ostr << std::endl << "Enter Next Command: ";
