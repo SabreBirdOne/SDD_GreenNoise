@@ -11,7 +11,10 @@ typedef std::list<PianoChord> ChordContainer;
 	A concrete class. SongData stores the chord data about the song and the song's duration.
 	Measurements of time are in beats.
 	
-	Representation Invariant: total_beat_duration >= the time when the last chord ends.
+	Representation Invariant: 
+		total_beat_duration >= the time when the last chord ends.
+		total_beat_duration >= 0
+		all times for each chord >= 0
 	Abstraction Function: 
 		total_beat_duration -> duration of the song data in beats
 		chord_set -> collection of chords

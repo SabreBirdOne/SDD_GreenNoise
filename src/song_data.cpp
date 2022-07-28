@@ -12,15 +12,31 @@ typedef std::list<PianoChord> ChordContainer;
 
 // checking representation invariant
 void SongData::checkRep(){
+	if (total_beat_duration < 0){
+		std::cerr << "ERROR: SongData.checkRep(): total_beat_duration is negative" << std::endl;
+		std::cerr << "total_beat_duration: " << total_beat_duration << std::endl;
+	}
+
 	for (ChordContainer::const_iterator itr = chord_set.begin();
 		itr != chord_set.end(); itr++){
+
+		if (itr->getBeatStart() < 0){
+			std::cerr << "ERROR: SongData.checkRep(): beat start time is negative" << std::endl;
+			std::cerr << "itr->getBeatStart(): " << itr->getBeatStart() << std::endl;
+		}
+		if (itr->getBeatDuration() < 0){
+			std::cerr << "ERROR: SongData.checkRep(): beat duration time is negative" << std::endl;
+			std::cerr << "itr->getBeatDuration(): " << itr->getBeatDuration() << std::endl;
+		}
 		double chord_end_time = itr->getBeatStart() + itr->getBeatDuration();
+
 		if (total_beat_duration < chord_end_time){
 			std::cerr << "ERROR: SongData.checkRep(): ";
 			std::cerr << "a chord ends before the total duration." << std::endl;
 			std::cerr << "total_beat_duration: " << total_beat_duration;
 			std::cerr << "end time of the last chord: " << chord_end_time << std::endl;
 		}
+
 	}
 }
 
