@@ -14,9 +14,15 @@ displayDialog::~displayDialog()
     delete ui;
 }
 
+void displayDialog::setSong(QString song){
+    this->song=song;
+    ui->textBrowser->setText(song);
+}
+
 void displayDialog::on_backButton_clicked()
 {
     this->hide();
+    ui->textBrowser->clear();
     parentWindow->show();
 }
 
