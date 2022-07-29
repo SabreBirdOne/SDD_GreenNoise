@@ -29,6 +29,7 @@ class displayDialog : public QDialog
 public:
     explicit displayDialog(QMainWindow *parent);
     void setSong(QString song);
+    void setChord(std::vector<PianoChord> chord_sequence);
     ~displayDialog();
 
 private slots:
@@ -36,7 +37,9 @@ private slots:
 
 private:
     Ui::displayDialog *ui;
+    std::vector<PianoChord> chord_sequence;
     QMainWindow *parentWindow;
+    QString fileName;
     QString song;
 };
 

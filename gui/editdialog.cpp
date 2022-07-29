@@ -39,9 +39,11 @@ void EditDialog::on_practiceButton_clicked()
     displayWindow->show();
 }
 
-
-void EditDialog::on_descriptionButton_clicked()
+void EditDialog::on_saveButton_clicked()
 {
-    ;
+    this->fileName=ui->textEdit->toPlainText();
+    this->song=ui->textEdit_2->toPlainText().append("|\n"+ui->textEdit_3->toPlainText().append("\nend"));
+    displayWindow->setSong(this->song);
+
 }
 
