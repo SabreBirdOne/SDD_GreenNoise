@@ -46,7 +46,18 @@ std::string intToNote(int note)
 PianoChord::PianoChord(std::string name_){
   name = name_;
   parseChord(name_);
+  beat_start = 0.0;
+  beat_duration = 1.0;
 }
+
+PianoChord::PianoChord(std::string name_, double bs, double bd) : beat_start(bs), beat_duration(bd)
+{
+  beat_start = bs;
+  beat_duration = bd;
+  name = name_;
+  parseChord(name_);
+}
+
 
 void PianoChord::addNotes(std::vector<int> notes)
 {
