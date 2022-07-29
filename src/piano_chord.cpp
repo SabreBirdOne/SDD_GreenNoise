@@ -50,8 +50,9 @@ PianoChord::PianoChord(std::string name_){
   beat_duration = 1.0;
 }
 
-PianoChord::PianoChord(std::string name_, double bs, double bd) : beat_start(bs), beat_duration(bd)
+PianoChord::PianoChord(std::string name_, int sc, double bs, double bd) : beat_start(bs), beat_duration(bd)
 {
+  specific_chord = sc;
   beat_start = bs;
   beat_duration = bd;
   name = name_;
