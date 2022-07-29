@@ -193,6 +193,12 @@ int main()
 }
 
 
+std::string readFromString(std::string input)
+{
+  //return specific chord path as a string
+}
+
+
 std::pair<int, std::vector<PianoChord>> findEasiestPath(std::vector<PianoChord> chord_sequence, int starting_chord)
 {
   //center the leftmost note of the last chord around C3
@@ -231,6 +237,7 @@ std::pair<int, std::vector<PianoChord>> findEasiestPath(std::vector<PianoChord> 
   chord_sequence[chord_sequence.size()-1].setSpecificChord(prev_specific_chord_index);
   return std::make_pair(0, chord_sequence);
 }
+
 
 
 int difficulty(PianoChordSpecific chord1, PianoChordSpecific chord2)
