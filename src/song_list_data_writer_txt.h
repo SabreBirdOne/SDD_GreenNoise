@@ -41,6 +41,7 @@ public:
 		@EFFECTS: writes data from SongListEntry to .txt file
 	*/
 	void writeData(const std::string& filename, SongListEntry& sle);
+  void SongListDataWriterTxt::writeDataFromString(const std::string& filename, std::string input)
 };
 
 #endif
