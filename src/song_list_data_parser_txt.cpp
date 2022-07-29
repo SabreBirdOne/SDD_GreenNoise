@@ -52,6 +52,8 @@ SongListEntry SongListDataParserTxt::parse(const std::string& filename){
   // parse song data
   ChordContainer chord_set;
   
+  
+  
   SongData sd(chord_set);
 
   // (re)construct SongListEntry

@@ -43,7 +43,6 @@ void SongListDataWriterTxt::writeData
   // write songdata
   SongData sd = sle.getSongData();
   ChordContainer chord_set = sd.getChordSet();
-  double total_beat_duration = sd.getTotalDuration();
   
   for (ChordContainer::iterator itr = chord_set.begin();
   	itr != chord_set.end(); itr++){
@@ -54,7 +53,6 @@ void SongListDataWriterTxt::writeData
   	// write the start time and duration time
   	outfile << itr->getBeatStart() << " " << itr->getBeatDuration() << std::endl;
   }
-  outfile << total_beat_duration << std::endl;
   outfile << "end" << std::endl;
 
   outfile.close();
