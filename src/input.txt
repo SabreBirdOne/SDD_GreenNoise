@@ -1,5 +1,7 @@
-C major
-E minor
-F# augmented
-C major/E
+F minor
+Eb dominant
+Db dominant
+C dominant
+F minor
 end
+show_specific_chords

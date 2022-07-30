@@ -10,6 +10,15 @@ MainWindow::MainWindow(QWidget *parent)
     displayWindow= new displayDialog(this);
 
     editWindow->setDisplayWindow(displayWindow);
+
+    for(int i=0;i<10;i++){
+        QString name="song";
+        name.append(QString("%1").arg(i+1));
+        ui->songList->setSortingEnabled(false);
+        QListWidgetItem *item = new QListWidgetItem(name);
+        ui->songList->addItem(item);
+    }
+
 }
 
 MainWindow::~MainWindow()
@@ -103,4 +112,3 @@ void MainWindow::on_importButton_2_clicked()
     */
     this->showDisplayWindow();
 }
-

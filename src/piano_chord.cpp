@@ -1,6 +1,7 @@
 #include "piano_chord.h"
 #include <string>
 #include <math.h>
+#include <stdio.h>
 
 #include <iostream>
 
@@ -42,6 +43,22 @@ std::string intToNote(int note)
   return return_string;
 }
 
+PianoChord::PianoChord(std::string name_){
+  name = name_;
+  parseChord(name_);
+  beat_start = 0.0;
+  beat_duration = 1.0;
+}
+
+PianoChord::PianoChord(std::string name_, int sc, double bs, double bd) : beat_start(bs), beat_duration(bd)
+{
+  specific_chord = sc;
+  beat_start = bs;
+  beat_duration = bd;
+  name = name_;
+  parseChord(name_);
+}
+
 
 void PianoChord::addNotes(std::vector<int> notes)
 {
@@ -49,10 +66,10 @@ void PianoChord::addNotes(std::vector<int> notes)
   int new_note;
   if (static_bass_note)
   {
-    for (int i = 0; i < notes.size(); i++)
+    for (unsigned int i = 0; i < notes.size(); i++)
     {
       new_note = base_chord[1] + notes[i] - 1;
-      if (new_note > 12) new_note %= 12;
+      if (new_note >= 12) new_note %= 12;
       
       if (new_note == base_chord[0])
       {
@@ -67,10 +84,10 @@ void PianoChord::addNotes(std::vector<int> notes)
   }
   else
   {
-    for (int i = 0; i < notes.size(); i++)
+    for (unsigned int i = 0; i < notes.size(); i++)
     {
       new_note = base_chord[0] + notes[i] - 1;
-      if (new_note > 12) new_note %= 12;
+      if (new_note >= 12) new_note %= 12;
       base_chord.push_back(new_note);
     }
   }
@@ -120,6 +137,7 @@ void PianoChord::parseChord(std::string name_)
 
 
   std::vector<int> notes;
+  //int notes_file = open("chord_types.json", O_RDONLY);
   if (name_ == "augmented")
   {
     addNotes({5, 9});
@@ -240,6 +258,10 @@ void PianoChord::parseChord(std::string name_)
   else
   {
   }
+  if (base_chord.size() == 0)
+  {
+    std::cerr << "ERROR: " << root_note << " " << name_ << " is an invalid chord name! Chord was not added to the list." << std::endl;
+  }
 }
 
 
@@ -248,14 +270,14 @@ std::vector<std::vector<int>> makeChordListHelper(int next_note, int max_note, s
   std::vector<std::vector<int>> return_vector;
   for (; next_note <= max_note; next_note++)
   {
-    for (int i = 0; i < notes.size(); i++)
+    for (unsigned int i = 0; i < notes.size(); i++)
     {
       if (next_note % 12 == notes[i])
       {
         std::vector<int> new_notes = notes;
         new_notes.erase(new_notes.begin() + i);
         std::vector<std::vector<int>> sub_chords = makeChordListHelper(next_note + 1, max_note, new_notes);
-        for (int j = 0; j < sub_chords.size(); j++)
+        for (unsigned int j = 0; j < sub_chords.size(); j++)
         {
           sub_chords[j].push_back(next_note);
           return_vector.push_back(sub_chords[j]);
@@ -284,9 +306,9 @@ void PianoChord::makeChordList(int min_note, int max_note, int max_distance)
     {
       std::vector<std::vector<int>> new_chord_list_vector = makeChordListHelper(min_note, 
                   min_note + max_distance, base_chord);
-      for (int i = 0; i < new_chord_list_vector.size(); i++)
+      for (unsigned int i = 0; i < new_chord_list_vector.size(); i++)
       {
-        for (int j = 0; j < chord_list_vector.size(); j++)
+        for (unsigned int j = 0; j < chord_list_vector.size(); j++)
         {
           if (new_chord_list_vector[i] == chord_list_vector[j])
           {
@@ -301,7 +323,7 @@ void PianoChord::makeChordList(int min_note, int max_note, int max_distance)
       min_note++;
     }
   }
-  for (int i = 0; i < chord_list_vector.size(); i++)
+  for (unsigned int i = 0; i < chord_list_vector.size(); i++)
   {
     // reverse the order of the notes in each set of notes and add to PianoChord::chord_list
     std::vector<int> new_chord(chord_list_vector[i].size());
@@ -309,7 +331,11 @@ void PianoChord::makeChordList(int min_note, int max_note, int max_distance)
     {
       new_chord[chord_list_vector[i].size() - j] = chord_list_vector[i][j - 1];
     }
-    chord_list.push_back(PianoChordSpecific(new_chord));
+    chord_list.push_back(PianoChordSpecific(new_chord, max_distance));
+  }
+  if (chord_list.size() == 0)
+  {
+    std::cerr << "WARNING: No playable chords for " << name << "." << std::endl;
   }
   return;
 }
@@ -317,9 +343,12 @@ void PianoChord::makeChordList(int min_note, int max_note, int max_distance)
 
 void PianoChord::print_base_chord(std::ostream &ostr)
 {
-  for (int i = 0; i < base_chord.size(); i++)
+  for (unsigned int i = 0; i < base_chord.size(); i++)
   {
-    ostr << "|" << intToNote(base_chord[i]);
+    std::string note = intToNote(base_chord[i]);
+    note = note.substr(0, note.size() - 1);
+    note += (note.size() == 1) ? " " : "";
+    ostr << "| " << note << " ";
   }
   ostr << "|" << std::endl;
 }
@@ -328,9 +357,9 @@ void PianoChord::print_base_chord(std::ostream &ostr)
 void PianoChord::print_chord(std::ostream &ostr)
 {
   PianoChordSpecific *chord = &chord_list[specific_chord];
-  for (int i = 0; i < chord->notes.size(); i++)
+  for (unsigned int i = 0; i < chord->notes.size(); i++)
   {
-    ostr << "|" << chord->notes[i];
+    ostr << "|" << intToNote(chord->notes[i]);
   }
   /*
   ostr << "| ";
@@ -345,10 +374,10 @@ void PianoChord::print_chord(std::ostream &ostr)
 
 void PianoChord::print_chord_list(std::ostream &ostr)
 {
-  for (int i = 0; i < chord_list.size(); i++)
+  for (unsigned int i = 0; i < chord_list.size(); i++)
   {
     PianoChordSpecific *chord = &chord_list[i];
-    for (int j = 0; j < chord->notes.size(); j++)
+    for (unsigned int j = 0; j < chord->notes.size(); j++)
     {
       std::string note = intToNote(chord->notes[j]);
       note += (note.size() == 2) ? " " : "";

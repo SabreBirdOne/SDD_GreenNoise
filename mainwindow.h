@@ -8,7 +8,11 @@
 #include <QFileDialog>
 #include "editdialog.h"
 #include "displaydialog.h"
-
+/*
+#include "piano_chord.h"
+#include "piano_chord_specific.h"
+#include "search.cpp"
+*/
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 namespace std { class MainWindow; }

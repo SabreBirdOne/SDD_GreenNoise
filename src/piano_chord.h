@@ -75,19 +75,41 @@
 class PianoChord
 {
 public:
-  PianoChord(std::string name_) : name(name_) { parseChord(name_); }
+  //CONSTRUCTORS
+  PianoChord(std::string name_);
+  PianoChord(std::string name_, int sc, double bs, double bd);
+
   void makeChordList(int min_note, int max_note, int max_distance);
   void print_base_chord(std::ostream &ostr);
   void print_chord(std::ostream &ostr);
   void print_chord_list(std::ostream &ostr);
   std::vector<PianoChordSpecific> chord_list;
-  std::string name;
+  std::string getName() { return name; }
+  void setSpecificChord(int index) { specific_chord = index; }
+  PianoChordSpecific getSpecificChord() { return chord_list[specific_chord]; }
+  int getSpecificChordIndex() { return specific_chord; }
+
+
+  void setBeatStart(double new_beat_start) { beat_start = new_beat_start; }
+  double getBeatStart() const { return beat_start; }
+
+  void setBeatDuration(double new_beat_duration) { beat_duration = new_beat_duration; }
+  double getBeatDuration() const { return beat_duration; }
+
+  const std::vector<int>& getBaseChord() const { return base_chord; }
+
 private:
+  std::string name;
   std::vector<int> base_chord;
-  int specific_chord;
+  int specific_chord = 0;
   bool static_bass_note;
+
+  double beat_start = 0.0;    // the start time of a chord in beats
+  double beat_duration = 0.0; // measure of duration of chord in beats
+
   void parseChord(std::string name_);
   void addNotes(std::vector<int> notes);
 };
 
+std::string intToNote(int note);
 #endif
