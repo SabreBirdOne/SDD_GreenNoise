@@ -16,6 +16,7 @@
 #include "song_list_entry.h"
 #include "song_list_data_parser_txt.h"
 #include "song_list_data_writer_txt.h"
+
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
@@ -58,11 +59,22 @@ private slots:
 
     void addToSongList(QString name);
 
+    void on_practiceButton_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     QString currentFile;
     QString textEdit;
+    QString fileName;
 
     EditDialog *editWindow;
     displayDialog *displayWindow;

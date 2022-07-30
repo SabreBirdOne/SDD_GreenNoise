@@ -26,3 +26,7 @@ void displayDialog::on_backButton_clicked()
     parentWindow->show();
 }
 
+void displayDialog::setChord(std::vector<PianoChord> chord_sequence){
+    this->chord_sequence=chord_sequence;
+}
+

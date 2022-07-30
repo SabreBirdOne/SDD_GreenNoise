@@ -40,10 +40,13 @@ private slots:
 
     void on_descriptionButton_clicked();
 
+    void on_saveButton_clicked();
+
 private:
     Ui::EditDialog *ui;
     QMainWindow *parentWindow;
     displayDialog * displayWindow;
+    QString fileName;
     QString song;
 };
 

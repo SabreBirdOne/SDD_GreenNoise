@@ -34,6 +34,7 @@ private:
     QMainWindow *parentWindow;
     displayDialog * displayWindow;
     EditDialog * editWindow;
+    QString fileName;
     QString textEdit;
 };
 
