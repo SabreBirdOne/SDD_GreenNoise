@@ -4,5 +4,5 @@ Ace Combat Infinity Original Soundtrack
 Right now
 For Post Stall Maneuver addicts
  | 
-A minor 7 0 0
+A minor 0 0 1
 end

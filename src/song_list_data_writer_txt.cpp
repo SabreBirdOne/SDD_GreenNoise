@@ -57,3 +57,14 @@ void SongListDataWriterTxt::writeData
 
   outfile.close();
 }
+
+void SongListDataWriterTxt::writeDataFromString(const std::string& filename, std::string input)
+{
+  std::ofstream outfile;
+  outfile.open(filename);
+
+  outfile << input;
+  
+  outfile.close();
+  return;
+}

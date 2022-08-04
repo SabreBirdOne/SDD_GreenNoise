@@ -1,7 +1,8 @@
-#ifndef DISPLAYDIALOG_H
-#define DISPLAYDIALOG_H
+#ifndef ADD_DIALOG_H
+#define ADD_DIALOG_H
 
 #include <QDialog>
+#include "displaydialog.h"
 #include <QMainWindow>
 
 #include "piano_chord.h"
@@ -19,25 +20,31 @@
 #include <unordered_map>
 
 namespace Ui {
-class displayDialog;
+class add_Dialog;
 }
 
-class displayDialog : public QDialog
+class add_Dialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit displayDialog(QMainWindow *parent);
-    void setSong(QString song);
-    ~displayDialog();
+    explicit add_Dialog(QMainWindow * parent,displayDialog *displayWindow);
+    QString getSongName();
+    QString getText();
+    ~add_Dialog();
+
 
 private slots:
+    void on_saveButton_clicked();
+
     void on_backButton_clicked();
 
 private:
-    Ui::displayDialog *ui;
-    QMainWindow *parentWindow;
-    QString song;
+    Ui::add_Dialog *ui;
+    QMainWindow * parentWindow;
+    displayDialog *displayWindow;
+    QString textEdit;
+    QString songName;
 };
 
-#endif // DISPLAYDIALOG_H
+#endif // ADD_DIALOG_H

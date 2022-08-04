@@ -51,8 +51,26 @@ SongListEntry SongListDataParserTxt::parse(const std::string& filename){
 
   // parse song data
   ChordContainer chord_set;
-  
-  
+  std::string chord_name;
+  int specific_chord;
+  double beat_start;
+  double beat_duration;
+
+  std::string instr;
+  while (infile >> instr){
+    if (instr == "end"){
+      break;
+    }
+    chord_name = instr; // first portion of name
+    infile >> instr;
+    chord_name += " ";
+    chord_name += instr; // second portion of name
+    infile >> specific_chord;
+    infile >> beat_start;
+    infile >> beat_duration;
+    PianoChord pc(chord_name, specific_chord, beat_start, beat_duration);
+    chord_set.push_back(pc);
+  }
   
   SongData sd(chord_set);
 

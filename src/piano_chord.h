@@ -77,7 +77,7 @@ class PianoChord
 public:
   //CONSTRUCTORS
   PianoChord(std::string name_);
-  PianoChord(std::string name_, double bs, double bd);
+  PianoChord(std::string name_, int sc, double bs, double bd);
 
   void makeChordList(int min_note, int max_note, int max_distance);
   void print_base_chord(std::ostream &ostr);
