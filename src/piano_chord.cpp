@@ -371,6 +371,18 @@ void PianoChord::print_chord(std::ostream &ostr)
   ostr << "|" << std::endl;
 }
 
+std::string PianoChord::getChord()
+{
+  std::string return_string = "";
+  PianoChordSpecific *chord = &chord_list[specific_chord];
+  for (unsigned int i = 0; i < chord->notes.size(); i++)
+  {
+    return_string += "|" + intToNote(chord->notes[i]);
+  }
+  return_string += "|";
+  return return_string;
+}
+
 
 void PianoChord::print_chord_list(std::ostream &ostr)
 {

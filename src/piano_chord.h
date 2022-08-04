@@ -82,6 +82,7 @@ public:
   void makeChordList(int min_note, int max_note, int max_distance);
   void print_base_chord(std::ostream &ostr);
   void print_chord(std::ostream &ostr);
+  std::string getChord();
   void print_chord_list(std::ostream &ostr);
   std::vector<PianoChordSpecific> chord_list;
   std::string getName() { return name; }
