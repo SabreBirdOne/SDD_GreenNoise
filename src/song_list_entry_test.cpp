@@ -1,6 +1,6 @@
 #include <ctime> 
 #include <string>
-#include <string.h>
+#include <cstring>
 #include <assert.h>
 #include <unordered_map>
 #include "song_data.h"
