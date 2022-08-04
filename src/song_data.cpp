@@ -76,16 +76,7 @@ const ChordContainer& SongData::getChordSet() const {
 double SongData::getTotalDuration() const {
 	return total_beat_duration;
 }
-/* SPECS: 
-	@PARAM:	time: the time point to get PianoChord data from
-	@REQUIRES: 0 <= time
-	@RETURNS: a collection of PianoChords that are played at the specified time
-	@NOTES:
-		recommended that the time parameter be something sensical, or else
-		you get an empty list. This is confounding because:
-		Is the time beyond the duration of the song data or is it really
-		that there is no sound at that time?
-*/
+
 const ChordContainer& SongData::getChordsAtTime(double time) const {
 	ChordContainer result;
 	// iterate through every chord in the chord_set
