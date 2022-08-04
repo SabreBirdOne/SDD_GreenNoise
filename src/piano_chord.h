@@ -99,6 +99,12 @@ public:
 
   const std::vector<int>& getBaseChord() const { return base_chord; }
 
+  /*
+    pc: a Piano Chord object
+    Overload of the comparison operator.
+  */
+  bool operator==(const PianoChord& pc) const;
+
 private:
   std::string name;
   std::vector<int> base_chord;

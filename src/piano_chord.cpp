@@ -2,7 +2,7 @@
 #include <string>
 #include <math.h>
 #include <stdio.h>
-
+#include <cstring>
 #include <iostream>
 
 int noteToInt(std::string note)
@@ -398,3 +398,17 @@ void PianoChord::print_chord_list(std::ostream &ostr)
     ostr << "|" << std::endl;
   }
 }
+
+
+bool PianoChord::operator==(const PianoChord& pc) const {
+  double epsilon = 1.19209e-07;
+  if (strcmp(this->name.c_str(), pc.name.c_str()) != 0) { return false; }
+  if (this->base_chord != pc.base_chord) { return false; }
+  if (std::abs(this->specific_chord - pc.specific_chord) >= epsilon) { return false; }
+  if (this->static_bass_note != pc.static_bass_note) { return false; }
+  if (std::abs(this->beat_start - pc.beat_start) >= epsilon) { return false; }
+  if (std::abs(this->beat_duration - pc.beat_duration) >= epsilon) { return false; }
+
+  return true;
+}
+
