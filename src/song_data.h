@@ -54,20 +54,31 @@ public:
 	// Accessors
 
 	/* SPECS:
-		RETURN: a copy of the collection of chords in the SongData
+		@RETURN: a copy of the collection of chords in the SongData
 	*/
 	const ChordContainer& getChordSet() const;
 	
 	/* SPECS:
-		RETURN: the total duration of the SongData in beats
+		@RETURN: the total duration of the SongData in beats
 	*/
 	double getTotalDuration() const;
+
+	/* SPECS: 
+		@PARAM:	time: the time point to get PianoChord data from
+		@REQUIRES: 0 <= time
+		@RETURNS: a collection of PianoChords that are played at the specified time
+		@NOTES:
+			recommended that the time parameter be something sensical, or else
+			you get an empty list. This is confounding because:
+			Is the time beyond the duration of the song data or is it really
+			that there is no sound at that time?
+	*/
+	const ChordContainer& getChordsAtTime(double time) const;  
 
 	// Modifiers
 	// maybe for editing chords in the edit screen??
 	// When debugging, remember to checkRep() to validate object 
 	// after internal state changes.
-	
 };
 
 #endif
