@@ -38,6 +38,13 @@ public:
 	*/
 	SongPlayer(const SongData& sd);
 
+	// ACCESSORS:
+	const SongData& getSongData() const { return song_data; }
+	double getSecondsPerBeat() const { return seconds_per_beat; }
+	double getCurrentTime() const { return current_time; }
+	bool isRunning() const { return running; }
+
+	// MODIFIERS
 	/* SPECS:
 		@EFFECTS: play the song at the specified bpm/seconds_per_beat
 		@NOTES:
