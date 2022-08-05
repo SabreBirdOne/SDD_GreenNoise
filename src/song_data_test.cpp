@@ -1,6 +1,7 @@
 #include <list>
 #include <limits>
 #include <assert.h>
+#include <iostream>
 #include "song_data.h"
 #include "song_data.cpp"
 #include "piano_chord.h"
@@ -38,20 +39,22 @@ int main(){
 	// Test 2: Constructor Arguments 
 	set_duration = 0.0;
 	song_2 = SongData(input_set);
-	//assert(song_2.getChordSet() == input_set);
+	assert(song_2.getChordSet() == input_set);
 	assert(std::abs(song_2.getTotalDuration() - 0.0) < epsilon);
 
 
 	// Test 3: Copy Constructor
 	song_3 = SongData(song_2);
-	//assert(song_3.getChordSet() == song_2.getChordSet());
+	assert(song_3.getChordSet() == song_2.getChordSet());
 	assert(std::abs(song_3.getTotalDuration() - song_2.getTotalDuration()) < epsilon);
 
 
 	// Test 4: Assignment Operator
 	song_3 = song_1;
-	//assert(song_3.getChordSet() == song_1.getChordSet());
+	assert(song_3.getChordSet() == song_1.getChordSet());
 	assert(std::abs(song_3.getTotalDuration() - song_1.getTotalDuration()) < epsilon);
+
+	std::cout << "All tests passed for song_data." << std::endl;
 
 	return 0;
 }

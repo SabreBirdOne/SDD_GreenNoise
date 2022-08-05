@@ -82,6 +82,7 @@ public:
   void makeChordList(int min_note, int max_note, int max_distance);
   void print_base_chord(std::ostream &ostr);
   void print_chord(std::ostream &ostr);
+  std::string getChord();
   void print_chord_list(std::ostream &ostr);
   std::vector<PianoChordSpecific> chord_list;
   std::string getName() { return name; }
@@ -97,6 +98,12 @@ public:
   double getBeatDuration() const { return beat_duration; }
 
   const std::vector<int>& getBaseChord() const { return base_chord; }
+
+  /*
+    pc: a Piano Chord object
+    Overload of the comparison operator.
+  */
+  bool operator==(const PianoChord& pc) const;
 
 private:
   std::string name;

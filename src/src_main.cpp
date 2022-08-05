@@ -239,6 +239,58 @@ std::pair<int, std::vector<PianoChord>> findEasiestPath(std::vector<PianoChord> 
 }
 
 
+std::string findEasiestPath(std::vector<PianoChord> chord_sequence, int starting_chord)
+{
+  //center the leftmost note of the last chord around C3
+  int center_note = 27;
+  int best = chord_sequence[0].chord_list[0].notes[0];
+  int best_index = 0;
+  for (unsigned int i = 1; i < chord_sequence[starting_chord].chord_list.size(); i++)
+  {
+    if (abs(chord_sequence[0].chord_list[i].notes[0] - center_note) < abs(best - center_note))
+    {
+      best = chord_sequence[0].chord_list[i].notes[0];
+      best_index = i;
+    }
+  }
+  int prev_specific_chord_index = chord_sequence[0].getSpecificChordIndex();
+  chord_sequence[0].setSpecificChord(best_index);
+  for (unsigned int i = 1; i < chord_sequence.size(); i++)
+  {
+    chord_sequence[i].setSpecificChord(0);
+    int min_difficulty = difficulty(chord_sequence[i-1].getSpecificChord(), chord_sequence[i].getSpecificChord());
+    int min_difficulty_index = 0;
+    for (unsigned int j = 1; j < chord_sequence[i].chord_list.size(); j++)
+    {
+      chord_sequence[i].setSpecificChord(j);
+      int new_difficulty = difficulty(chord_sequence[i-1].getSpecificChord(), chord_sequence[i].getSpecificChord());
+      if (new_difficulty < min_difficulty)
+      {
+        min_difficulty = difficulty(chord_sequence[i-1].getSpecificChord(), chord_sequence[i].getSpecificChord());
+        min_difficulty_index = j;
+      }
+    }
+    chord_sequence[i].setSpecificChord(min_difficulty_index);
+    chord_sequence[i-1].setSpecificChord(prev_specific_chord_index);
+    prev_specific_chord_index = chord_sequence[i].getSpecificChordIndex();
+  }
+  chord_sequence[chord_sequence.size()-1].setSpecificChord(prev_specific_chord_index);
+  //return std::make_pair(0, chord_sequence);
+  std::string return_string = "";
+  for (unsigned int i = 0; i < chord_sequence.size(); i++)
+  {
+    return_string += chord_sequence[i].getName() + ":";
+    for (unsigned int j = 0; j < 15 - chord_sequence[i].getName().size(); j++)
+    {
+      return_string += " ";
+    }
+    return_string += chord_sequence[i].getChord() + "\n";
+  }
+  return return_string;
+}
+
+
+
 
 int difficulty(PianoChordSpecific chord1, PianoChordSpecific chord2)
 {
