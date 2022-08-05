@@ -2,6 +2,7 @@
 #include <string>
 #include <cstring>
 #include <assert.h>
+#include <iostream>
 #include <unordered_map>
 #include "song_data.h"
 #include "song_data.cpp"
@@ -44,7 +45,7 @@ int main(){
 	metadata_1 = entry_1.getAllMetaData();
 	int x = strcmp(metadata_1["SONG NAME"].c_str(), "Cool Name");
 
-	//assert(song_2.getChordSet() == song_1.getChordSet());
+	assert(song_2.getChordSet() == song_1.getChordSet());
 	assert(std::abs(song_2.getTotalDuration() - song_1.getTotalDuration()) < epsilon);
 	assert(strcmp(metadata_1["SONG NAME"].c_str(), "Cool Name") == 0);
 	assert(strcmp(metadata_1["COMPOSER"].c_str(), "Cool Composer") == 0);
@@ -77,6 +78,8 @@ int main(){
 	assert(strcmp(entry_2.getSpecificMetaData("COMPOSER").c_str(), "GREEN NOISE") == 0);
 	assert(strcmp(entry_2.getSpecificMetaData("ALBUM").c_str(), "RED NOISE") == 0);
 	assert(strcmp(entry_2.getSpecificMetaData("EXTRA INFO").c_str(), "GREEN NOISE") == 0);
+
+	std::cout << "All tests passed for song_list_entry." << std::endl;
 
 	return 0;
 }

@@ -54,5 +54,7 @@ int main(){
 	assert(song_3.getChordSet() == song_1.getChordSet());
 	assert(std::abs(song_3.getTotalDuration() - song_1.getTotalDuration()) < epsilon);
 
+	std::cout << "All tests passed for song_data." << std::endl;
+
 	return 0;
 }
