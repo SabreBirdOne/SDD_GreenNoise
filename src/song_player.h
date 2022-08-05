@@ -5,6 +5,8 @@
 #include <list>
 #include <string>
 
+typedef std::list<PianoChord> ChordContainer;
+
 /*
 	A Concrete class. It uses SongData to display the set of PianoChord
 	to play at certain times. Useful for the practice screen.
@@ -20,13 +22,16 @@
 		current_time -> namesake
 		running: true -> song is running
 						 false -> song is paused
-
+	
+	EXTRA: to convert beats per minute to seconds per beat:
+	Let n be the bpm.
+	then seconds_per_beat = (60/n) seconds
 */
 class SongPlayer {
 private:
 	SongData song_data;
 	double seconds_per_beat; // default: 100 bpm (Beats per minute)
-	double current_time;
+	double current_time; // measured in abstract beats
 	bool running;
 public:
 	
@@ -46,6 +51,8 @@ public:
 
 	// MODIFIERS
 	/* SPECS:
+		@PARAM: displayed_chords: the chord container to contain displayed
+		chords at certain times during play.
 		@EFFECTS: play the song at the specified bpm/seconds_per_beat
 		@NOTES:
 			This algorithm's behavior will change based on the internal state
@@ -57,7 +64,7 @@ public:
 				The setTime() function lets user alter the time when the
 				song is paused.
 	*/
-	playSong();
+	playSong(ChordContainer& displayed_chords);
 
 	/* SPECS:
 		@EFFECTS: pauses the song at the current_time
