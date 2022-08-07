@@ -78,7 +78,7 @@ double SongData::getTotalDuration() const {
 	return total_beat_duration;
 }
 
-const ChordContainer& SongData::getChordsAtTime(double time) const {
+ChordContainer SongData::getChordsAtTime(double time) const {
 	ChordContainer result;
 	// iterate through every chord in the chord_set
 	for (ChordContainer::const_iterator itr = chord_set.begin();

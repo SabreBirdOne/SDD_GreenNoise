@@ -2,10 +2,7 @@
 #include "song_data.h"
 #include <list>
 #include <string>
-
-// https://www.techiedelight.com/sleep-in-cpp/
-#include <chrono>
-#include <thread>
+#include <unistd.h>
 
 typedef std::list<PianoChord> ChordContainer;
 
@@ -58,7 +55,7 @@ void SongPlayer::playSong(ChordContainer& displayed_chords){
 			break;
 		}
 		// wait until the next beat
-		std::this_thread::sleep_for(std::chrono::seconds(seconds_per_beat));
+		sleep(seconds_per_beat);
 	}
 }
 

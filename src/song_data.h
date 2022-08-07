@@ -73,7 +73,7 @@ public:
 			Is the time beyond the duration of the song data or is it really
 			that there is no sound at that time?
 	*/
-	const ChordContainer& getChordsAtTime(double time) const;  
+	ChordContainer getChordsAtTime(double time) const;  
 
 	// Modifiers
 	// maybe for editing chords in the edit screen??
