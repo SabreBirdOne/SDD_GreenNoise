@@ -15,6 +15,15 @@ private:
 	bool running;
 */
 
+void SongPlayer::checkRep(){
+	// 0 <= current_time <= song_data.total_beat_duration
+	if (!(0 <= current_time && current_time <= song_data.getTotalDuration())){
+		std::cerr << "ERROR: SongPlayer.checkRep(): current_time out of range." << std::endl;
+		std::cerr << "current_time: " << current_time << 
+		"; song_data.total_beat_duration: " << song_data.getTotalDuration() << std::endl;
+	}
+}
+
 /* SPECS:
 	@PARAM: sd: the song data for the song player
 	@EFFECTS: construct a Song Player with the song data and 

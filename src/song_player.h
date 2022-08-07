@@ -33,6 +33,7 @@ private:
 	double seconds_per_beat; // default: 100 bpm (Beats per minute)
 	double current_time; // measured in abstract beats
 	bool running;
+	void checkRep();
 public:
 	
 	/* SPECS:
