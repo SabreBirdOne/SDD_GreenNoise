@@ -41,7 +41,7 @@ int main(){
 	assert(p1.isRunning() == false);
 
 	//Test 2: Playing a Song
-	p1.playSong(c1);
+	p1.playSong(&c1);
 	assert(p1.isRunning() == true);
 
 	//Test 3: Pausing a Song
