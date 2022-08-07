@@ -64,12 +64,12 @@ public:
 				The setTime() function lets user alter the time when the
 				song is paused.
 	*/
-	playSong(ChordContainer& displayed_chords);
+	void playSong(ChordContainer& displayed_chords);
 
 	/* SPECS:
 		@EFFECTS: pauses the song at the current_time
 	*/
-	pauseSong();
+	void pauseSong();
 
 	/* SPECS:
 		@PARAM: new_current_time: the new time to start playing the Song
@@ -78,7 +78,7 @@ public:
 			0 <= new_current_time <= song_data.total_beat_duration
 		@EFFECTS: sets the current_time to new_current_time
 	*/
-	setTime(double new_current_time);
+	void setTime(double new_current_time);
 
 	/* SPECS:
 		@PARAM: new_bpm: new beats per minute tempo
@@ -86,7 +86,7 @@ public:
 			converts new_bpm to correct unit
 			assigns speed to seconds_per_beat
 	*/
-	setTempo(double new_bpm);
-}
+	void setTempo(double new_bpm);
+};
 
 #endif

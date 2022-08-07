@@ -47,9 +47,9 @@ SongPlayer::SongPlayer(const SongData& sd){
 			The setTime() function lets user alter the time when the
 			song is paused.
 */
-SongPlayer::playSong(ChordContainer& displayed_chords){
+void SongPlayer::playSong(ChordContainer& displayed_chords){
 	running = true;
-	for(; current_time < song_data.getTotalDuration; current_time++){
+	for(; current_time < song_data.getTotalDuration(); current_time++){
 		// display the chords played during this time.
 		// Use this displayed_chords to see played chords.
 		displayed_chords = song_data.getChordsAtTime(current_time);
@@ -65,7 +65,7 @@ SongPlayer::playSong(ChordContainer& displayed_chords){
 /* SPECS:
 	@EFFECTS: pauses the song at the current_time
 */
-SongPlayer::pauseSong(){
+void SongPlayer::pauseSong(){
 	running = false;
 }
 
@@ -76,7 +76,7 @@ SongPlayer::pauseSong(){
 		0 <= new_current_time <= song_data.total_beat_duration
 	@EFFECTS: sets the current_time to new_current_time
 */
-SongPlayer::setTime(double new_current_time){
+void SongPlayer::setTime(double new_current_time){
 	current_time = new_current_time;
 }
 
@@ -86,6 +86,6 @@ SongPlayer::setTime(double new_current_time){
 		converts new_bpm to correct unit
 		assigns speed to seconds_per_beat
 */
-SongPlayer::setTempo(double new_bpm){
+void SongPlayer::setTempo(double new_bpm){
 	seconds_per_beat = (60/new_bpm);
 }
