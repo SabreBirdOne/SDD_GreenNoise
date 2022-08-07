@@ -36,7 +36,7 @@ int main(){
 	SongPlayer p1 = SongPlayer(sd1);
 	assert(std::abs(sd1.getTotalDuration() - p1.getSongData().getTotalDuration()) < epsilon);
 	assert(sd1.getChordSet() == p1.getSongData().getChordSet());
-	assert(std::abs(p1.getSecondsPerBeat() - 0.6) < epsilon);
+	assert(std::abs(p1.getSecondsPerBeat() - 60/100) < epsilon);
 	assert(std::abs(p1.getCurrentTime() - 0) < epsilon);
 	assert(p1.isRunning() == false);
 
