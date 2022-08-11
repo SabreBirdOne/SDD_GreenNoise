@@ -37,13 +37,12 @@ int main(){
 	};
 	MetaDataContainer metadata_3;
 	SongListEntry entry_1 = SongListEntry(song_1);
-	SongListEntry entry_2 = SongListEntry(song_1, metadata_2);;
+	SongListEntry entry_2 = SongListEntry(song_1, metadata_2);
 
 
 	//Test 1: Constructors
 	song_2 = entry_1.getSongData();
 	metadata_1 = entry_1.getAllMetaData();
-	int x = strcmp(metadata_1["SONG NAME"].c_str(), "Cool Name");
 
 	assert(song_2.getChordSet() == song_1.getChordSet());
 	assert(std::abs(song_2.getTotalDuration() - song_1.getTotalDuration()) < epsilon);
