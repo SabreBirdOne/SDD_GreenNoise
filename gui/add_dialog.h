@@ -19,6 +19,9 @@
 #include <list>
 #include <unordered_map>
 
+typedef std::list<PianoChord> ChordContainer;
+typedef std::unordered_map<std::string, std::string> MetaDataContainer;
+
 namespace Ui {
 class add_Dialog;
 }
@@ -31,6 +34,7 @@ public:
     explicit add_Dialog(QMainWindow * parent,displayDialog *displayWindow);
     QString getSongName();
     QString getText();
+    SongListEntry* getSle();
     ~add_Dialog();
 
 
@@ -45,6 +49,7 @@ private:
     displayDialog *displayWindow;
     QString textEdit;
     QString songName;
+    SongListEntry* sle;
 };
 
 #endif // ADD_DIALOG_H

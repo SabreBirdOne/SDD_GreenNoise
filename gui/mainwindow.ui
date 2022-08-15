@@ -58,7 +58,7 @@
      <rect>
       <x>50</x>
       <y>240</y>
-      <width>431</width>
+      <width>401</width>
       <height>300</height>
      </rect>
     </property>
@@ -82,14 +82,14 @@
    <widget class="QPushButton" name="importButton_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>320</x>
       <y>140</y>
-      <width>41</width>
+      <width>131</width>
       <height>40</height>
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>Search</string>
     </property>
     <property name="icon">
      <iconset>
@@ -138,7 +138,7 @@
      <rect>
       <x>320</x>
       <y>185</y>
-      <width>260</width>
+      <width>131</width>
       <height>40</height>
      </rect>
     </property>
@@ -146,6 +146,82 @@
      <string>Add</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="practiceButton">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>240</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Practice</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>320</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>test2</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>320</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>test</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>280</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Edit</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>320</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete</string>
+    </property>
+   </widget>
+   <zorder>pushButton_4</zorder>
+   <zorder>pushButton_3</zorder>
+   <zorder>importButton</zorder>
+   <zorder>songList</zorder>
+   <zorder>searchBar</zorder>
+   <zorder>importButton_2</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>addButton</zorder>
+   <zorder>practiceButton</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>pushButton_2</zorder>
   </widget>
  </widget>
  <resources/>
