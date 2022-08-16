@@ -31,6 +31,8 @@ public:
     explicit EditDialog(QMainWindow *parent);
     void setDisplayWindow(displayDialog *display);
     void setSong(QString song);
+
+    void setSongName(QString name);
     ~EditDialog();
 
 private slots:
@@ -38,13 +40,20 @@ private slots:
 
     void on_practiceButton_clicked();
 
-    void on_descriptionButton_clicked();
+    //void on_descriptionButton_clicked();
+
+    void on_saveButton_clicked();
 
 private:
     Ui::EditDialog *ui;
     QMainWindow *parentWindow;
     displayDialog * displayWindow;
+    QString fileName;
     QString song;
+
+    QString textEdit;
+    QString songName;
+    SongListEntry* sle;
 };
 
 #endif // EDITDIALOG_H

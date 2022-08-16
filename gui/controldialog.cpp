@@ -42,10 +42,7 @@ void controlDialog::on_editButton_clicked()
 
 
 void controlDialog::on_pushButton_4_clicked()
-{/*
-    QListWidgetItem *it = parentWindow->ui->songList->takeItem(ui->songList->currentRow());
-    delete it;
-    */
-    ;
+{    parentWindow->show();
+     this->hide();
 }
 

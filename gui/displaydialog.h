@@ -29,15 +29,32 @@ class displayDialog : public QDialog
 public:
     explicit displayDialog(QMainWindow *parent);
     void setSong(QString song);
+    void setChord(std::vector<PianoChord> chord_sequence);
+    std::string findEasiestPath(std::vector<PianoChord> chord_sequence, int starting_chord);
+    int difficulty(PianoChordSpecific chord1, PianoChordSpecific chord2);
+    void algo();
+
     ~displayDialog();
 
 private slots:
     void on_backButton_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
 private:
     Ui::displayDialog *ui;
+    std::vector<PianoChord> chord_sequence;
     QMainWindow *parentWindow;
+    QString fileName;
     QString song;
+    int current_time;//seconds
+    QTimer *timer;
+    double tempo; //beats/second
+    QStringList results;
 };
 
 #endif // DISPLAYDIALOG_H

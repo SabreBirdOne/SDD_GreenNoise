@@ -12,14 +12,6 @@ MainWindow::MainWindow(QWidget *parent)
     editWindow->setDisplayWindow(displayWindow);
     controlWindow=new controlDialog(this,displayWindow,editWindow);
     add=new add_Dialog(this,displayWindow);
-    for(int i=0;i<10;i++){
-        QString name="song";
-        name.append(QString("%1").arg(i+1));
-        ui->songList->setSortingEnabled(false);
-        QListWidgetItem *item = new QListWidgetItem(name);
-        ui->songList->addItem(item);
-    }
-    connect(ui->songList,&QListWidget::itemDoubleClicked,controlWindow,&controlDialog::show);
 }
 
 MainWindow::~MainWindow()
@@ -49,7 +41,7 @@ void MainWindow::showMainWindow(){
 }
 
 void MainWindow::on_importButton_clicked()
-{/*
+{
     //read in a file
     newDocument();
     QString fileName = QFileDialog::getOpenFileName(this, "Open the file");
@@ -65,20 +57,10 @@ void MainWindow::on_importButton_clicked()
     QTextStream in(&file);
     textEdit= in.readAll();
     file.close();
-*/
 
-    //show the editWindow
-    QString fileName=ui->searchBar->text();
-    //fileName.append(".txt");
-    QFile file("C:/Users/li148/Documents/RPI/summer/SDD/Re-Chorder/test.txt");
-    if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
-        QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
-        return;
-    }
-    setWindowTitle("test.txt");
-    QTextStream in(&file);
-    textEdit= in.readAll();
-    file.close();
+    this->fileName=fileName;
+    this->addToSongList(fileName);
+
     this->showEditWindow();
 
 }
@@ -88,7 +70,9 @@ void MainWindow::on_searchBar_returnPressed()
 {
     newDocument();
     QString fileName=ui->searchBar->text();
+    this->editWindow->setSongName(fileName);
     fileName.append(".txt");
+    this->fileName=fileName;
     QFile file("C:/Users/li148/Documents/RPI/summer/SDD/Re-Chorder/"+fileName);
     if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
         QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
@@ -98,6 +82,10 @@ void MainWindow::on_searchBar_returnPressed()
     QTextStream in(&file);
     textEdit= in.readAll();
     file.close();
+
+    this->fileName=fileName;
+    this->addToSongList(fileName);
+    this->editWindow->setSong(textEdit);
     this->showEditWindow();
 }
 
@@ -115,7 +103,8 @@ void MainWindow::on_importButton_2_clicked()
 
     QString fileName=ui->searchBar->text();
     fileName.append(".txt");
-    QFile file("C:/Users/li148/Documents/RPI/summer/SDD/Re-Chorder/test.txt");
+    this->fileName=fileName;
+    QFile file("C:/Users/li148/Documents/RPI/summer/SDD/Re-Chorder"+fileName);
     if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
         QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
         return;
@@ -124,6 +113,15 @@ void MainWindow::on_importButton_2_clicked()
     QTextStream in(&file);
     textEdit= in.readAll();
     file.close();
+
+    this->fileName=fileName;
+    this->addToSongList(fileName);
+
+    //back end
+    SongListDataWriterTxt writer;
+    writer.writeDataFromString(fileName.toStdString(),textEdit.toStdString());
+    SongListDataParserTxt parser;
+    parser.parse(fileName.toStdString());
 
     this->showDisplayWindow();
 }
@@ -137,19 +135,55 @@ void MainWindow::addToSongList(QString songName){
     ui->songList->setSortingEnabled(false);
     QListWidgetItem *item = new QListWidgetItem(name);
     ui->songList->addItem(item);
-    connect(ui->songList,&QListWidget::itemDoubleClicked,controlWindow,&controlDialog::show);
+    //connect(ui->songList,&QListWidget::itemDoubleClicked,controlWindow,&controlDialog::show);
+    ui->songList->update();
 }
 
 void MainWindow::on_addButton_clicked()
 {
     this->newDocument();
     this->showAddWindow();
+
+    //sleep(10000);
+    QString name="song1";
+    ui->songList->setSortingEnabled(false);
+    QListWidgetItem *item = new QListWidgetItem(name);
+    ui->songList->addItem(item);
+    //connect(ui->songList,&QListWidget::itemDoubleClicked,editWindow,&EditDialog::show);
+    //this->sle=add->getSle();
+    ui->songList->update();
 }
 void MainWindow::showControlWindow(){
     this->controlWindow->show();
 }
 
+void MainWindow::on_practiceButton_clicked()
+{
+    showDisplayWindow();
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QListWidgetItem *it = ui->songList->takeItem(ui->songList->currentRow());
+    delete it;
+}
 
 
+void MainWindow::on_pushButton_3_clicked()
+{
+    showEditWindow();
+}
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    showEditWindow();
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QListWidgetItem *it = ui->songList->takeItem(ui->songList->currentRow());
+    delete it;
+}
 
